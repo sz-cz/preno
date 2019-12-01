@@ -1,0 +1,8 @@
+<div class="sticky">
+    <pn-progress-bar [booking]="booking"></pn-progress-bar>
+</div>
+<pn-services [booking]="booking" [services]="services" (pickedService)="onPickedService($event)"></pn-services>
+<pn-workers [booking]="booking" [workers]="workers" (pickedWorker)="onPickedWorker($event)" *ngIf="!(booking.service === null)"></pn-workers>
+<pn-date [booking]="booking" [workers]="allWorkers" [services]="services" (pickedDate)="onPickedDate($event)"  *ngIf="!(booking.worker === null)"></pn-date>
+<pn-form (completedForm)="onCompletedForm($event)" *ngIf="!(booking.date === null)"></pn-form>
+<pn-summary (booked)="sendBooking()"[booking]="booking" [workers]="allWorkers" [services]="services" *ngIf="!(booking.customer.name === '' && booking.customer.phone === '')"></pn-summary>

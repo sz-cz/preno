@@ -1,0 +1,9 @@
+<div class="reservation-section">
+<h2 id="reservation-form" class="title">Uzupełnij dane</h2>
+<form #reservationForm="ngForm" (ngSubmit)="onSubmit(reservationForm)">
+    <label for="">Imię:<input name="name" type="text" ngModel></label>
+    <label for="">Mail:<input name="email" type="text" ngModel></label>
+    <label for="">Telefon:<input name="phone" type="text" ngModel></label>
+    <button type="submit">Wyślij</button>
+</form>
+</div>

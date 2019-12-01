@@ -1,0 +1,11 @@
+<div class="collection">
+    <div class="collect"  *ngFor="let element of elements">
+        <div [ngClass]="{'unchosen': type == 'employees' && element.id != booking.worker && booking.worker != null
+        || type == 'services' && element.id != booking.service && booking.service !=null,
+        'chosen': type == 'employees' && element.id == booking.worker || type == 'services' && element.id == booking.service }"
+        class="collection-element" (click)="pickElement(element.id)">
+            <img class="collection-image" src="./assets/images/{{type}}/{{element.image}}" alt={{element.name}}>
+        </div>
+        <p class="collection-element__title">{{element.name}}</p>
+    </div>
+</div>

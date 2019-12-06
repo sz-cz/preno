@@ -10,8 +10,8 @@ export class SummaryComponent implements OnInit {
   @Output() booked = new EventEmitter()
 
   @Input() booking
-  @Input() workers
-  @Input() services
+  @Input() worker
+  @Input() service
 
   book = () => {
     this.booked.emit()

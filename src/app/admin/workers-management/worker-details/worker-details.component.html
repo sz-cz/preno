@@ -1,0 +1,5 @@
+<p>worker-details works!</p>
+<p>Imię: {{worker?.name}}</p>
+<p>Opis: {{worker?.description}}</p>
+<h3>Rezerwacje pracownika:</h3>
+<p *ngFor="let booking of bookings$ | async" [routerLink]="['/admin/bookings', booking.key]">{{booking.date.toDate() | date: 'd.MM.yyyy HH:mm'}}-{{booking?.endDate.toDate() | date: 'HH:mm'}}</p>

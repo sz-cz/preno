@@ -3,6 +3,7 @@ import { ServicesService } from '../core/services/services.service';
 import { Router } from '@angular/router';
 import { WorkersService } from '../core/services/workers.service';
 import { BookingsService } from '../core/services/bookings.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'pn-reservation',
@@ -12,7 +13,6 @@ import { BookingsService } from '../core/services/bookings.service';
 export class ReservationComponent implements OnInit {
 
   booking = {
-    id: 1,
     service: null,
     worker: null,
     date: null,
@@ -24,23 +24,28 @@ export class ReservationComponent implements OnInit {
     }
   }
 
-  services = this.servicesService.activeServices
+  services$ = this.servicesService.getServices()
   allWorkers = this.workersService.activeWorkers
-  workers = null
+  workers$ = null
+  worker
+  service
 
-  onPickedService = serviceID => {
-    this.booking.service = serviceID;
-    this.workers = this.workersService.findWorkers(serviceID)
+  onPickedService = service => {
+    this.booking.service = service.key;
+    this.service = service
+    this.workers$ = this.workersService.findWorkers(service.key)
+    // this.workers$ = this.workersService.getWorkers()
     // this.router.navigateByUrl('#workers')
   }
-  onPickedWorker = workerID => {
-    this.booking.worker = workerID;
+  onPickedWorker = worker => {
+    this.booking.worker = worker.key;
+    this.worker = worker;
     console.log(this.booking)
     // this.router.navigateByUrl('#workers')
   }
   onPickedDate = date => {
     this.booking.date = date
-    this.booking.endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes() + this.services[this.booking.service].duration)
+    this.booking.endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes() + this.service.duration)
     console.log(this.booking)
   }
   onCompletedForm = form => {
@@ -59,10 +64,16 @@ export class ReservationComponent implements OnInit {
     this.booking.customer.phone = '';
   }
 
-  constructor(private servicesService : ServicesService, private workersService : WorkersService, private bookingService : BookingsService, private router : Router) { }
+  constructor(private servicesService : ServicesService,
+    private workersService : WorkersService, 
+    private bookingService : BookingsService, 
+    private router : Router) { }
 
   ngOnInit() {
-    this.bookingService.getBookings(0, 'upcoming').subscribe(console.log)
+    this.services$.subscribe()
+    this.servicesService.getService('0IyxGP51E3rSvUZfJdPP').subscribe(item => console.log(item))
+    
+    // this.bookingService.getBookings(0, 'upcoming').subscribe(console.log)
   }
 
 }

@@ -1,5 +1,5 @@
-<p  id="reservation-hour">Tego dnia {{workers[this.booking.worker].name}} pracuje w godzinach: {{workers[this.booking.worker].workhours[day.getDay()]}}</p>
-<p *ngIf="workDay == null">Niestety, pracownik ma wolne</p>
+<p *ngIf="worker.workHours[day.getDay()] != 0" id="reservation-hour">Tego dnia {{worker.name}} pracuje w godzinach: {{worker.workHours[day.getDay()]}}</p>
+<p *ngIf="worker.workHours[day.getDay()] == 0">Niestety, pracownik ma wolne</p>
 <div class="slots">
   <div class='slot' [ngClass]="{'slot--occupied': slot.getMilliseconds() === 1,
   'slot--unable': slot.getMilliseconds() === 3,

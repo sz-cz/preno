@@ -18,6 +18,7 @@ export class WorkersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // this.workers.subscribe()
   }
 
 }

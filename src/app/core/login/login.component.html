@@ -1,0 +1,15 @@
+<div class="background">
+    <form #loginForm="ngForm" (ngSubmit)="logIn(loginForm)" class="form">
+        <label class="form__line" for="login">login:</label>
+        <input class="form__line form__input" type="email" name="login" ngModel>
+        <label class="form__line" for="password">hasło:</label>
+        <input class="form__line form__input" type="password" name="password" ngModel>
+        <div class="form__line" >
+            <button [routerLink]="['/admin']"type="submit">Zaloguj</button>
+            <button [routerLink]="['']">Wróć</button>
+            <button>Zarejestruj się</button>
+        </div>
+
+    </form>
+</div>
+

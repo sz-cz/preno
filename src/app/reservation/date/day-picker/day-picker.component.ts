@@ -22,7 +22,7 @@ export class DayPickerComponent implements OnInit {
 
 showDays = number => {
   for (let i = 0; i < number; i++) {
-    let dat = new Date(2019, 11, this.today + 1 + i)
+    let dat = new Date(this.date.getFullYear(), this.date.getMonth(), this.today + 1 + i)
     this.days.push(dat)
   }
 }

@@ -10,8 +10,8 @@ import { flatten } from '@angular/compiler';
 export class HourPickerComponent implements OnInit {
 
   @Input() booking
-  @Input() workers
-  @Input() services
+  @Input() worker
+  @Input() service
   @Input() day
   @Output() pickedHour = new EventEmitter()
 
@@ -26,25 +26,26 @@ export class HourPickerComponent implements OnInit {
   constructor(private bookingsService : BookingsService) { }
 
   markOccupiedSlots = () => {
-    this.bookingsService.getBookings(this.booking.worker, 'upcoming').subscribe(snapshot => snapshot.map(booking => {
+    this.bookingsService.getBookings().subscribe(snapshot => snapshot.map(booking => {
       this.filterBookings(booking)
-
 
     this.hourSlots.forEach(slot => {
       // console.log(this.bookings)
-      const unableDate = new Date(slot.getTime() + this.services[this.booking.service].duration*60000)
+      const unableDate = new Date(slot.getTime() + this.service.duration*60000)
       this.bookings.forEach(booking => {
         if (unableDate > booking.date.toDate()
-        && unableDate <= booking.endDate.toDate()) {
+        && unableDate <= booking.endDate.toDate()
+        && slot.getMilliseconds() != 1) {
+          console.log(this.service.duration)
+          console.log(slot.getHours() + ':' + slot.getMinutes() + '.' + slot.getMilliseconds())
           slot.setMilliseconds(3)
-          // console.log('dupa')
       }
       //   if (unableDate.getHours() >) {
       //     slot.setMilliseconds(3)
       // }
         if (slot >= booking.date.toDate() && slot < booking.endDate.toDate()) {
           slot.setMilliseconds(1)
-          // console.log(slot.getHours() + ':' + slot.getMinutes())
+          // console.log(slot.getHours() + ':' + slot.getMinutes() + '.' + slot.getMilliseconds())
         }
       })
     })
@@ -52,8 +53,9 @@ export class HourPickerComponent implements OnInit {
   }
   filterBookings = booking => {
     // this.bookings.push(booking)
-    console.log(this.day.getDate(), booking.date.toDate().getDate())
-    this.day.getDate() == booking.date.toDate().getDate() ? this.bookings.push(booking) : null
+    // console.log(this.day.getDate(), booking.date.toDate().getDate())
+    if (booking.date) {this.day.getDate() == booking.date.toDate().getDate() ? this.bookings.push(booking) : null
+    }
     // this.bookings = this.allBookings.filter(booking =>
     //   // booking.worker == this.workers[this.booking.worker].id && 
     //   this.day.getDate() == booking.date.toDate().getDate()
@@ -62,7 +64,8 @@ export class HourPickerComponent implements OnInit {
   }
 
 availableHours = () => {
-  const workDay = this.workers[this.booking.worker].workhours[this.day.getDay()];
+  console.log(this.worker)
+  const workDay = this.worker.workHours[this.day.getDay()];
   if (workDay === null) {this.workDay = null}
   else {
     const beginingHour = workDay.substring(0,2);

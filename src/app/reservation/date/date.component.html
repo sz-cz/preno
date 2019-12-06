@@ -1,5 +1,5 @@
 <div class="reservation-section">
   <h2 class="title">Wybierz termin</h2>
     <pn-day-picker (pickedDay)="onPickedDay($event)"></pn-day-picker>
-    <pn-hour-picker *ngIf="data.day" [booking]="booking" [workers]="workers" [services]="services" [day]="day" (pickedHour)="onPickedHour($event)"></pn-hour-picker>
+    <pn-hour-picker *ngIf="data.day" [booking]="booking" [worker]="worker" [service]="service" [day]="day" (pickedHour)="onPickedHour($event)"></pn-hour-picker>
 </div>

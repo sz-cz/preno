@@ -14,6 +14,7 @@ import { WorkersService } from './core/services/workers.service';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     ReservationModule,
     SharedModule,
     CoreModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    AdminModule,
   ],
   providers: [AngularFirestore, ServicesService, WorkersService],
   bootstrap: [AppComponent]

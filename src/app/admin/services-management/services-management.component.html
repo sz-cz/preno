@@ -1,0 +1,4 @@
+<h2>Lista usług</h2>
+<div>
+    <p *ngFor="let service of services$ | async" [routerLink]="['/admin/services', service.key]">{{service.name}}</p>
+</div>

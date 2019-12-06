@@ -9,8 +9,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class DateComponent implements OnInit {
 
   @Input() booking
-  @Input() workers
-  @Input() services
+  @Input() worker
+  @Input() service
   @Output() pickedDate = new EventEmitter()
 
   day

@@ -1,0 +1,5 @@
+<p>booking-details works!</p>
+<p>Zarezerwował: {{booking?.customer.name}}</p>
+<p>Usługa: {{service?.name}}</p>
+<p>Pracownik: {{worker?.name}}</p>
+<p>Okres: {{booking?.date.toDate() | date: 'd.MM.yyyy HH:mm'}}-{{booking?.endDate.toDate() | date: 'HH:mm'}}</p>

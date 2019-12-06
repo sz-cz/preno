@@ -1,0 +1,4 @@
+<h2>Lista pracowników</h2>
+<div>
+    <p *ngFor="let worker of workers$ | async" [routerLink]="['/admin/workers', worker.key]">{{worker.name}}</p>
+</div>

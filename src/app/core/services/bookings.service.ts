@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map, filter } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +11,32 @@ export class BookingsService {
 
   constructor(private db: AngularFirestore) { }
 
-  getBookings = (workerIndex, type) : Observable<any> => {
-    return this.db.collection(`/bookings/${workerIndex}/${type}`).snapshotChanges()
-    .pipe(map(response => response.map(booking => booking.payload.doc.data())))
+  getBookings = () : Observable<any> => {
+    return this.db.collection(`bookings`, ref => ref.orderBy('date')).snapshotChanges()
+    .pipe(map(response => response.map(booking => this.assignKey(booking))))
+  }
+  getBooking = key => this.db.collection(`bookings`).doc(key).snapshotChanges()
+    .pipe(map(booking => booking.payload.data()))
+  
+  findBookings = workerKey => this.db.collection('bookings', ref => ref.where(`worker`, "==", workerKey)).snapshotChanges()
+    .pipe(map((snapshot : any) => snapshot.map(worker => this.assignKey(worker))))
+
+  deleteBooking = (key) => {
+    this.db.collection(`bookings`).doc(key).delete()
   }
 
   addBooking = booking => {
-    const newBooking = new Booking(booking.id, booking.service, booking.worker, booking.date, booking.endDate, booking.customer.name, booking.customer.email, booking.customer.phone)
-    this.db.collection(`/bookings/${booking.worker}/upcoming`).add({...newBooking})
+    const newBooking = new Booking(booking.service, booking.worker, booking.date, booking.endDate, booking.customer.name, booking.customer.email, booking.customer.phone)
+    this.db.collection(`bookings`).add({...newBooking})
   }
+
+  assignKey(booking) {
+    // console.log(service.payload.doc.id)
+      return {...booking.payload.doc.data(), key: booking.payload.doc.id}
+    }
 }
 
 class Booking {
-  id
   service
   worker
   date
@@ -34,8 +47,7 @@ class Booking {
     phone: ''
   }
 
-  constructor(id, service, worker, date, endDate, name, email, phone) {
-    this.id = id;
+  constructor(service, worker, date, endDate, name, email, phone) {
     this.service = service
     this.worker = worker
     this.date = date

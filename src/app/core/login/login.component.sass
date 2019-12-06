@@ -1,0 +1,26 @@
+@import './../../../assets/styles/mixins.sass'
+    
+.background
+    background-color: #ddf
+    +size(100vh, 100vw)
+    display: flex
+    +center
+
+.form
+    display: flex
+    flex-wrap: wrap
+    +center
+    background-color: white
+    padding: 20px
+    width: 80vw
+    border: #ddd solid 2px
+    border-radius: 10px
+
+    &__line
+        display: flex
+        flex-basis: 80%
+        margin: 5px
+    
+    &__input
+        font-size: 16px
+        padding: 3px

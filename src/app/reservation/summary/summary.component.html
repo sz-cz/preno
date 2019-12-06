@@ -1,7 +1,7 @@
 <div id="reservation-summary" class="reservation-section">
 <h2 class="title">Podsumowanie</h2>
-    <p>Usługa: {{services[booking.service].name}}</p>
-    <p>Pracownik: {{workers[booking.worker].name}} {{workers[booking.worker].surname}}</p>
+    <p>Usługa: {{service.name}}</p>
+    <p>Pracownik: {{worker.name}} {{worker.surname}}</p>
     <p>Dzień: {{booking.date | date: 'd.MM.yyyy'}}</p>
     <p>Godzina: {{booking.date | date: 'HH:mm'}}-{{booking.endDate | date: 'HH:mm'}}</p>
     <p>Twoje dane: {{booking.customer.name}}, {{booking.customer.phone}}</p>

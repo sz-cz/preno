@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ServicesComponent } from './reservation/services/services.component';
-import { WorkersComponent } from './reservation/workers/workers.component';
-import { DateComponent } from './reservation/date/date.component';
-import { FormComponent } from './reservation/form/form.component';
+import { LoginComponent } from './core/login/login.component';
+import { ReservationComponent } from './reservation/reservation.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
-  // {path: 'services', component: ServicesComponent},
-  // {path: 'employees', component: WorkersComponent},
-  // {path: 'date', component: DateComponent},
-  // {path: 'form', component: FormComponent},
+  {path: '', pathMatch: 'full', component: ReservationComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'admin',
+  loadChildren: './admin/admin.module#AdminModule',
+  component: AdminComponent}
 ];
 
 @NgModule({

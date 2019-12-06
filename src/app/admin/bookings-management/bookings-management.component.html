@@ -1,0 +1,10 @@
+<h2>Lista rezerwacji</h2>
+<div>
+    <div *ngFor="let booking of bookings$ | async" [routerLink]="['/admin/bookings', booking.key]">
+        <p>{{booking.date.toDate() | date: 'd.MM.yyyy HH:mm'}}-{{booking.endDate.toDate() | date: 'HH:mm'}}</p>
+        <!-- <p>{{booking.service | service}}</p> -->
+        <!-- <p>{{getWorkerName(booking.worker)}}</p> -->
+        <p>{{booking.customer.name}}</p>
+            <span (click)="deleteBooking(booking.key)">usuń</span>
+    </div>
+</div>

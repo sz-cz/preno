@@ -14,12 +14,13 @@ export class CollectionElementComponent implements OnInit {
   condition;
 
 
-  pickElement = elementID => this.pickedElement.emit(elementID)
+  pickElement = element => {
+    return this.pickedElement.emit(element)
+  }
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.type)
   }
 
 }

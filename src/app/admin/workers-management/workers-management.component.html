@@ -2,3 +2,4 @@
 <div>
     <p *ngFor="let worker of workers$ | async" [routerLink]="['/admin/workers', worker.key]">{{worker.name}}</p>
 </div>
+<pn-worker-form></pn-worker-form>

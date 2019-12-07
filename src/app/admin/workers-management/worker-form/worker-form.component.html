@@ -1,0 +1,20 @@
+<h2>Dodaj pracownika</h2>
+<form [formGroup]="workerForm" (submit)="addWorker()">
+    <input type="text" formControlName="name">
+    <input type="text" formControlName="description">
+    <input type="text" formControlName="image">
+    <div formGroupName="services">
+        <label *ngFor="let service of services" for="services">{{service.name}}
+            <input formControlName="{{service.key}}" type="checkbox" name="services" id="{{service.key}}">
+        </label>
+    </div>
+    <div formGroupName="workHours">
+            <label *ngFor="let element of [0,1,2,3,4,5,6]" for="workHours">
+                <input formControlName={{element}} type="input">
+            </label>
+        </div>
+    <button type="submit">Dodaj</button>
+    <pre>
+        {{workerForm.value | json}}
+    </pre>
+</form>

@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { WorkersService } from '../core/services/workers.service';
 import { BookingsService } from '../core/services/bookings.service';
 import { Observable } from 'rxjs';
+import { Booking, CustomerForm } from '../shared/models/booking.model';
+import { Service } from '../shared/models/service.model';
+import { Worker } from '../shared/models/worker.model';
 
 @Component({
   selector: 'pn-reservation',
@@ -12,7 +15,8 @@ import { Observable } from 'rxjs';
 })
 export class ReservationComponent implements OnInit {
 
-  booking = {
+  booking : Booking = {
+    key: '',
     service: null,
     worker: null,
     date: null,
@@ -24,36 +28,32 @@ export class ReservationComponent implements OnInit {
     }
   }
 
-  services$ = this.servicesService.getServices()
-  allWorkers = this.workersService.activeWorkers
-  workers$ = null
-  worker
-  service
+  services$ : Observable<Service> = this.servicesService.getServices()
+  workers$ : Observable<Worker> = null
+  worker : Worker
+  service : Service
 
-  onPickedService = service => {
+  onPickedService = (service : Service) => {
     this.booking.service = service.key;
     this.service = service
     this.workers$ = this.workersService.findWorkers(service.key)
-    // this.workers$ = this.workersService.getWorkers()
-    // this.router.navigateByUrl('#workers')
   }
-  onPickedWorker = worker => {
+
+  onPickedWorker = (worker : Worker) => {
     this.booking.worker = worker.key;
     this.worker = worker;
-    console.log(this.booking)
-    // this.router.navigateByUrl('#workers')
   }
-  onPickedDate = date => {
+  
+  onPickedDate = (date : Date) => {
     this.booking.date = date
     this.booking.endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes() + this.service.duration)
-    console.log(this.booking)
   }
-  onCompletedForm = form => {
+
+  onCompletedForm = (form : CustomerForm) => {
     this.booking.customer = form
-    console.log(this.booking)
   }
+
   sendBooking = () => {
-    console.log('Wysyłam rezerwację');
     this.bookingService.addBooking(this.booking);
     this.booking.service = null;
     this.booking.worker = null;
@@ -72,8 +72,6 @@ export class ReservationComponent implements OnInit {
   ngOnInit() {
     this.services$.subscribe()
     this.servicesService.getService('0IyxGP51E3rSvUZfJdPP').subscribe(item => console.log(item))
-    
-    // this.bookingService.getBookings(0, 'upcoming').subscribe(console.log)
   }
 
 }

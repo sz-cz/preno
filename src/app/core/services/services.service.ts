@@ -13,8 +13,13 @@ export class ServicesService {
   getServices = () : Observable<any> => this.db.collection('services').snapshotChanges()
     .pipe(map((snapshot : any) => snapshot.map(service => this.assignKey(service))))
 
+  getServicesKeys = () : Observable<any> => this.db.collection('services').snapshotChanges()
+    .pipe(map((snapshot : any) => snapshot.map(service => service.payload.doc.id)))
+
   getService = key => this.db.collection(`services`).doc(key).snapshotChanges()
     .pipe(map(service => service.payload.data()))
+
+  addService = value => this.db.collection(`services`).add(value)
 
     assignKey(service) {
       // console.log(service.payload.doc.id)

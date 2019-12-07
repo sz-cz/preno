@@ -1,0 +1,8 @@
+<h2>Dodaj nową usługę</h2>
+<form [formGroup]="serviceForm" (submit)="addService()">
+    <input formControlName="name" type="text" placeholder="nazwa">
+    <input formControlName="duration" type="number" placeholder="ile trwa">
+    <input formControlName="image" type="string" placeholder="ścieżka do zdjęcia">
+    <input formControlName="available" type="checkbox">
+    <button type="submit">Wyślij</button>
+</form>

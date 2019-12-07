@@ -2,3 +2,4 @@
 <div>
     <p *ngFor="let service of services$ | async" [routerLink]="['/admin/services', service.key]">{{service.name}}</p>
 </div>
+<pn-service-form></pn-service-form>

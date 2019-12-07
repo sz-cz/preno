@@ -1,0 +1,17 @@
+[33mcommit ef1fd52cb79ced53db202dc3f40b56d9c26ac169[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: szarkowicz <arturszarkowicz@gmail.com>
+Date:   Fri Dec 6 22:07:12 2019 +0100
+
+    Add firebase collections to workers and services; create  lists of bookings, workers, services in Admin Module
+
+[33mcommit 8b8aaa221aaf1778d889532be1c92b115f0dc9d3[m
+Author: szarkowicz <arturszarkowicz@gmail.com>
+Date:   Sun Dec 1 21:39:13 2019 +0100
+
+    Add the reservation module
+
+[33mcommit 3331c419b6e7dc15d2bcfc205eafa05a7062e411[m
+Author: szarkowicz <arturszarkowicz@gmail.com>
+Date:   Sat Nov 23 21:40:44 2019 +0100
+
+    initial commit

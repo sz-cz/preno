@@ -10,8 +10,6 @@ export class WorkersService {
 
   constructor(private db: AngularFirestore) { }
 
-  activeWorkers = []
-
   getWorkers = () : Observable<any> => this.db.collection('workers').snapshotChanges()
     .pipe(map((snapshot : any) => snapshot.map(worker => this.assignKey(worker))))
 
@@ -21,6 +19,8 @@ export class WorkersService {
   findWorkers = serviceID => this.db.collection('workers', ref => ref.where(`services.${serviceID}`, "==", true)).snapshotChanges()
       .pipe(map((snapshot : any) => snapshot.map(worker => this.assignKey(worker)
       )))
+
+  addWorker = value => this.db.collection(`workers`).add(value)
 
   assignKey(worker) {
       return {...worker.payload.doc.data(), key: worker.payload.doc.id}

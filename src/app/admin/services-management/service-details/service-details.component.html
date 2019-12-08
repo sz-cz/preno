@@ -1,3 +1,22 @@
-<p>service-details works!</p>
-<p>Imię: {{service?.name}}</p>
-<p>Ile trwa: {{service?.duration}}</p>
+<div class="container">
+    <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Szczegóły usługi</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+            <mat-list>
+                <mat-list-item >
+                        <h4 mat-line>Nazwa:</h4>
+                        <p mat-line>{{service?.name}}</p>
+                </mat-list-item>
+                <mat-list-item >
+                        <h4 mat-line>Czas wykonania</h4>
+                        <p mat-line>{{service?.duration}}</p>
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="deleteService()" mat-raised-button color="warn">usuń usługę</button>
+        </mat-card-actions>
+        </mat-card>
+</div>

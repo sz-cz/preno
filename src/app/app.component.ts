@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   // path = this.router.url
   items : Observable<any>
-  constructor(db: AngularFirestore, private router : Router) {
+  constructor(db: AngularFirestore, private route : Router) {
     this.items = db.collection('items').valueChanges();
     // console.log(this.path)
     // console.log(this.items)

@@ -7,15 +7,19 @@ import { ServicesManagementComponent } from './services-management/services-mana
 import { WorkerDetailsComponent } from './workers-management/worker-details/worker-details.component';
 import { ServiceDetailsComponent } from './services-management/service-details/service-details.component';
 import { BookingDetailsComponent } from './bookings-management/booking-details/booking-details.component';
+import { ServiceFormComponent } from './services-management/service-form/service-form.component';
+import { WorkerFormComponent } from './workers-management/worker-form/worker-form.component';
 
 
 const routes: Routes = [
-  {path: '', component: AdminComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'bookings'},
   {path: 'bookings', component: BookingsManagementComponent},
   {path: 'bookings/:key', component: BookingDetailsComponent},
   {path: 'workers', component: WorkersManagementComponent},
+  {path: 'workers/add', component: WorkerFormComponent},
   {path: 'workers/:key', component: WorkerDetailsComponent},
   {path: 'services', component: ServicesManagementComponent},
+  {path: 'services/add', component: ServiceFormComponent},
   {path: 'services/:key', component: ServiceDetailsComponent}
 ];
 

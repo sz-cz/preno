@@ -15,6 +15,8 @@ import { WorkersService } from './core/services/workers.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AdminModule } from './admin/admin.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { AdminModule } from './admin/admin.module';
     CoreModule,
     MatDatepickerModule,
     AdminModule,
+    BrowserAnimationsModule
   ],
   providers: [AngularFirestore, ServicesService, WorkersService],
   bootstrap: [AppComponent]

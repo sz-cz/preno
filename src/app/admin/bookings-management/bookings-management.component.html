@@ -1,10 +1,18 @@
-<h2>Lista rezerwacji</h2>
-<div>
-    <div *ngFor="let booking of bookings$ | async" [routerLink]="['/admin/bookings', booking.key]">
-        <p>{{booking.date.toDate() | date: 'd.MM.yyyy HH:mm'}}-{{booking.endDate.toDate() | date: 'HH:mm'}}</p>
-        <!-- <p>{{booking.service | service}}</p> -->
-        <!-- <p>{{getWorkerName(booking.worker)}}</p> -->
-        <p>{{booking.customer.name}}</p>
-            <span (click)="deleteBooking(booking.key)">usuń</span>
-    </div>
+<div class="container">
+    <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Lista rezerwacji</mat-card-title>
+                <mat-card-subtitle>Naciśnij, aby zobaczyć szczegóły</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+            <mat-list>
+                <div *ngFor="let booking of bookings$ | async" [routerLink]="['/admin/bookings', booking.key]">
+                    <mat-list-item >Data: {{booking?.date.toDate() | date: 'd.MM.yyyy HH:mm'}}-{{booking?.endDate.toDate() | date: 'HH:mm'}} <br>
+                        Klient: {{booking?.customer.name}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list>
+        </mat-card-content>
+        </mat-card>
 </div>
+<!-- <span (click)="deleteBooking(booking.key)">usuń</span> -->

@@ -12,6 +12,11 @@ import { RouterModule } from '@angular/router';
 import { DayPickerComponent } from './date/day-picker/day-picker.component';
 import { HourPickerComponent } from './date/hour-picker/hour-picker.component';
 import { FormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [ReservationComponent, ServicesComponent, WorkersComponent, DateComponent, FormComponent, SummaryComponent, ProgressBarComponent, DayPickerComponent, HourPickerComponent],
@@ -20,7 +25,12 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     SharedModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatListModule
   ]
 })
 export class ReservationModule { }

@@ -1,9 +1,35 @@
 <div id="reservation-summary" class="reservation-section">
 <h2 class="title">Podsumowanie</h2>
-    <p>Usługa: {{service.name}}</p>
-    <p>Pracownik: {{worker.name}} {{worker.surname}}</p>
-    <p>Dzień: {{booking.date | date: 'd.MM.yyyy'}}</p>
-    <p>Godzina: {{booking.date | date: 'HH:mm'}}-{{booking.endDate | date: 'HH:mm'}}</p>
-    <p>Twoje dane: {{booking.customer.name}}, {{booking.customer.phone}}</p>
-    <button class="book" (click)="book()">Zarezerwuj</button>
+    <mat-card class="example-card">
+            <mat-card-content>
+            <mat-list>
+                <mat-list-item >
+                        <h4 mat-line>{{service.name}}</h4>
+                        <p mat-line>usługa</p>
+                </mat-list-item>
+                <mat-list-item >
+                        <h4 mat-line>{{worker.name}} {{worker.surname}}</h4>
+                        <p mat-line>pracownik</p>
+                </mat-list-item>
+                <mat-list-item >
+                        <h4 mat-line>{{booking.date | date: 'd.MM.yyyy'}}</h4>
+                        <p mat-line>dzień</p>
+                </mat-list-item>
+                <mat-list-item >
+                        <h4 mat-line>{{booking.date | date: 'HH:mm'}}-{{booking.endDate | date: 'HH:mm'}}</h4>
+                        <p mat-line>godzina</p>
+                </mat-list-item>
+                <mat-list-item >
+                        <h4 mat-line>Twoje dane</h4>
+                        <p mat-line>{{booking.customer.name}}</p>
+                        <p mat-line>{{booking.customer.email}}</p>
+                        <p mat-line>{{booking.customer.phone}}</p>
+                </mat-list-item>
+            </mat-list>
+            <div class="form__line">
+                    <button (click)="book()" mat-raised-button color="primary">zarezerwuj</button>
+            </div>
+        </mat-card-content>
+
+        </mat-card>
 </div>

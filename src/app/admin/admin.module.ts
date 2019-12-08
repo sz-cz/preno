@@ -12,7 +12,13 @@ import { BookingDetailsComponent } from './bookings-management/booking-details/b
 import { ServiceFormComponent } from './services-management/service-form/service-form.component';
 import { WorkerFormComponent } from './workers-management/worker-form/worker-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -22,7 +28,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatListModule,
+    MatDividerModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    // BrowserAnimationsModule
   ]
 })
 export class AdminModule { }

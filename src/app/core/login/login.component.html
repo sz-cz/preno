@@ -1,15 +1,22 @@
-<div class="background">
-    <form #loginForm="ngForm" (ngSubmit)="logIn(loginForm)" class="form">
-        <label class="form__line" for="login">login:</label>
-        <input class="form__line form__input" type="email" name="login" ngModel>
-        <label class="form__line" for="password">hasło:</label>
-        <input class="form__line form__input" type="password" name="password" ngModel>
-        <div class="form__line" >
-            <button [routerLink]="['/admin']"type="submit">Zaloguj</button>
-            <button [routerLink]="['']">Wróć</button>
-            <button>Zarejestruj się</button>
-        </div>
-
-    </form>
+<div class="container">
+    <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Zaloguj się</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form #loginForm="ngForm" (ngSubmit)="logIn(loginForm)" class="form">
+                    <mat-form-field class="form-field" class="form__input">
+                        <input matInput ngModel name="login" type="email" placeholder="login">
+                    </mat-form-field>
+                    <mat-form-field class="form-field" class="form__input">
+                        <input matInput ngModel name="name" type="password" placeholder="nazwa">
+                    </mat-form-field>
+                    <div class="form__line">
+                        <button [routerLink]="['/admin']" mat-raised-button>zaloguj</button>
+                        <button [routerLink]="['']" mat-raised-button>wróć</button>
+                        <button [routerLink]="['']" mat-raised-button>zarejestruj</button>
+                    </div>
+                </form>
+        </mat-card-content>
+        </mat-card>
 </div>
-

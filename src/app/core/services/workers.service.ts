@@ -22,6 +22,8 @@ export class WorkersService {
 
   addWorker = value => this.db.collection(`workers`).add(value)
 
+  deleteWorker = key => this.db.collection('workers').doc(key).delete()
+
   assignKey(worker) {
       return {...worker.payload.doc.data(), key: worker.payload.doc.id}
     }

@@ -21,9 +21,7 @@ export class BookingsService {
   findBookings = workerKey => this.db.collection('bookings', ref => ref.where(`worker`, "==", workerKey)).snapshotChanges()
     .pipe(map((snapshot : any) => snapshot.map(worker => this.assignKey(worker))))
 
-  deleteBooking = (key) => {
-    this.db.collection(`bookings`).doc(key).delete()
-  }
+  deleteBooking = (key) => this.db.collection(`bookings`).doc(key).delete()
 
   addBooking = booking => {
     const newBooking = new Booking(booking.service, booking.worker, booking.date, booking.endDate, booking.customer.name, booking.customer.email, booking.customer.phone)
@@ -52,7 +50,6 @@ class Booking {
     this.worker = worker
     this.date = date
     this.endDate = endDate
-    // console.log(this)
     this.customer.name = name
     this.customer.email = email
     this.customer.phone = phone

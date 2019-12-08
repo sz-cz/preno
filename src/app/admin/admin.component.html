@@ -1,8 +1,11 @@
-<nav>
-    <ul class="navigation">
-        <li class="navigation__link" [routerLink]="['bookings']">Rezerwacje</li>
-        <li class="navigation__link" [routerLink]="['workers']">Pracownicy</li>
-        <li class="navigation__link" [routerLink]="['services']">Usługi</li>
-    </ul>
-</nav>
-<router-outlet></router-outlet>
+<div class="container">
+    <nav>
+            <ul class="navigation">
+                <li class="navigation__link" [routerLink]="['bookings']">Rezerwacje</li>
+                <li class="navigation__link" [routerLink]="['workers']">Pracownicy</li>
+                <li class="navigation__link" [routerLink]="['services']">Usługi</li>
+            </ul>
+        </nav>
+        <router-outlet></router-outlet>
+</div>
+

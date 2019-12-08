@@ -1,5 +1,35 @@
-<p>worker-details works!</p>
-<p>Imię: {{worker?.name}}</p>
-<p>Opis: {{worker?.description}}</p>
-<h3>Rezerwacje pracownika:</h3>
-<p *ngFor="let booking of bookings$ | async" [routerLink]="['/admin/bookings', booking.key]">{{booking.date.toDate() | date: 'd.MM.yyyy HH:mm'}}-{{booking?.endDate.toDate() | date: 'HH:mm'}}</p>
+<div class="container">
+        <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Szczegóły pracownika</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                <mat-list>
+                    <mat-list-item >
+                            <h4 mat-line>Imię:</h4>
+                            <p mat-line>{{worker?.name}}</p>
+                    </mat-list-item>
+                    <mat-list-item >
+                            <h4 mat-line>Opis</h4>
+                            <p mat-line>{{worker?.description}}</p>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="deleteWorker()" mat-raised-button color="warn">usuń pracownika</button>
+            </mat-card-actions>
+            </mat-card>
+            <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>Rezerwacje pracownika:</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                    <mat-list>
+                        <mat-list-item *ngFor="let booking of bookings$ | async" [routerLink]="['/admin/bookings', booking.key]">
+                                <h4 mat-line>{{booking.date.toDate() | date: 'd.MM.yyyy'}}</h4>
+                                <p mat-line>{{booking.date.toDate() | date: 'HH:mm'}}-{{booking?.endDate.toDate() | date: 'HH:mm'}}</p>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+                </mat-card>
+    </div>

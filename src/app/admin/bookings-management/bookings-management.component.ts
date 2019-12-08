@@ -18,10 +18,6 @@ export class BookingsManagementComponent implements OnInit {
 
   // getServiceName = key => this.servicesService.getService(key).subscribe(item => console.log(item))
 
-  deleteBooking = (key) => {
-    this.bookingsService.deleteBooking(key)
-  }
-
   ngOnInit() {
       this.bookings$.subscribe()
       // this.services$.subscribe()

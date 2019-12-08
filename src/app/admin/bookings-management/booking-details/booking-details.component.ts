@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingsService } from 'src/app/core/services/bookings.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from 'src/app/core/services/services.service';
 import { WorkersService } from 'src/app/core/services/workers.service';
 
@@ -12,17 +12,36 @@ import { WorkersService } from 'src/app/core/services/workers.service';
 export class BookingDetailsComponent implements OnInit {
 
   booking
+  bookingKey
   service
   worker
 
-  constructor(private bookingsService : BookingsService, private servicesService : ServicesService, private workersService : WorkersService, private route : ActivatedRoute) { }
+  constructor(
+    private bookingsService : BookingsService,
+    private servicesService : ServicesService,
+    private workersService : WorkersService,
+    private route : ActivatedRoute,
+    private router : Router) { }
+
+  deleteBooking = () => {
+    this.bookingsService.deleteBooking(this.bookingKey).then(
+      () => this.router.navigate(['/admin/bookings']),
+      () => console.log('nie udało się'))
+
+  }
 
   ngOnInit() {
+    this.bookingKey = this.route.snapshot.params['key']
+    // this.booking = this.route.snapshot.data['booking']
     this.bookingsService.getBooking(this.route.snapshot.params['key']).subscribe(booking => {
       this.booking = booking;
-      this.servicesService.getService(this.booking.service).subscribe(service => this.service = service)
-      this.workersService.getWorker(this.booking.worker).subscribe(worker => this.worker = worker)
+      if (booking) {
+        this.servicesService.getService(this.booking.service).subscribe(service => this.service = service)
+        this.workersService.getWorker(this.booking.worker).subscribe(worker => this.worker = worker)
+      }
+
     })
+
 
   }
 

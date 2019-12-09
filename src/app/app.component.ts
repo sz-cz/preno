@@ -12,10 +12,17 @@ import { Router } from '@angular/router';
 export class AppComponent {
   // path = this.router.url
   items : Observable<any>
-  constructor(db: AngularFirestore, private route : Router) {
+  constructor(db: AngularFirestore, private router : Router) {
     this.items = db.collection('items').valueChanges();
-    // console.log(this.path)
-    // console.log(this.items)
   }
+
+  showNavbar = () => {
+    if (
+      this.router.url == '/login' ||
+      this.router.url == '/register' ||
+      this.router.url == '/404') return false
+    else return true
+  }
+
   title = 'preno';
 }

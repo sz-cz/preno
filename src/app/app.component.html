@@ -1,3 +1,4 @@
-<pn-navigation></pn-navigation>
-<router-outlet></router-outlet>
-<!-- <pn-reservation></pn-reservation> -->
+<div class="wrapper">
+    <pn-navigation *ngIf="showNavbar()"></pn-navigation>
+    <router-outlet></router-outlet>
+</div>

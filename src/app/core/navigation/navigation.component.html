@@ -1,6 +1,7 @@
 <nav>
     <ul class="navigation">
-        <!-- <li class ="navigation__link">Poznaj nas</li> -->
-        <li class="navigation__link" [routerLink]="['/login']">Zaloguj</li>
+        <li class ="navigation__link">{{authService.getUser()?.email}}</li>
+        <li *ngIf="!authService.getUser()" class="navigation__link" [routerLink]="['/login']">Zaloguj</li>
+        <li *ngIf="authService.getUser()" class="navigation__link" (click)="logOut()">Wyloguj</li>
     </ul>
 </nav>

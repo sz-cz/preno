@@ -8,11 +8,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 
 @NgModule({
-  declarations: [NavigationComponent, LoginComponent],
+  declarations: [NavigationComponent, LoginComponent, RegistrationComponent],
   exports: [NavigationComponent],
   imports: [
     CommonModule,

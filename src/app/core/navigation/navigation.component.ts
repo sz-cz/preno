@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'pn-navigation',
@@ -7,10 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation.component.sass']
 })
 export class NavigationComponent implements OnInit {
+  user = this.authService.getUser()
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, private authService : AuthService) { }
+
+  logOut = () => this.authService.logout()
 
   ngOnInit() {
+    console.log(this.user)
   }
 
 }

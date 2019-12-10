@@ -1,9 +1,10 @@
-<div class="sticky">
-    <pn-progress-bar [booking]="booking"></pn-progress-bar>
+<div class="container">
+    <div class="sticky">
+        <pn-progress-bar [booking]="booking"></pn-progress-bar>
+    </div>
+    <pn-summary (booked)="sendBooking()"[booking]="booking" [worker]="worker" [service]="service" *ngIf="!(booking.customer.name === '' && booking.customer.phone === '')"></pn-summary>
+    <pn-form (completedForm)="onCompletedForm($event)" *ngIf="!(booking.date === null)"></pn-form>
+    <pn-date [booking]="booking" [worker]="worker" [service]="service" (pickedDate)="onPickedDate($event)"  *ngIf="!(booking.worker === null)"></pn-date>
+    <pn-workers [booking]="booking" [workers]="workers$" (pickedWorker)="onPickedWorker($event)" *ngIf="!(booking.service === null)"></pn-workers>
+    <pn-services [booking]="booking" [services]="services$" (pickedService)="onPickedService($event)"></pn-services>
 </div>
-<!-- <p *ngFor="let service of services$ | async">{{service.key}}</p> -->
-<pn-services [booking]="booking" [services]="services$" (pickedService)="onPickedService($event)"></pn-services>
-<pn-workers [booking]="booking" [workers]="workers$" (pickedWorker)="onPickedWorker($event)" *ngIf="!(booking.service === null)"></pn-workers>
-<pn-date [booking]="booking" [worker]="worker" [service]="service" (pickedDate)="onPickedDate($event)"  *ngIf="!(booking.worker === null)"></pn-date>
-<pn-form (completedForm)="onCompletedForm($event)" *ngIf="!(booking.date === null)"></pn-form>
-<pn-summary (booked)="sendBooking()"[booking]="booking" [worker]="worker" [service]="service" *ngIf="!(booking.customer.name === '' && booking.customer.phone === '')"></pn-summary>

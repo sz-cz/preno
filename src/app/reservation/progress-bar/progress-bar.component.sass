@@ -1,21 +1,23 @@
+@import '../../../assets/styles/mixins'
+@import '../../../assets/styles/variables'
+    
 .progress-bar
     display: flex
     flex-wrap: wrap
+    background-color: white
     justify-content: space-evenly
-    background-color: #fff
-    padding: 10px 0
+    align-items: center
+    height: $progress-bar-height
     margin: 10px 0
 
     &__circle
-        height: 13vw
-        width: 13vw
+        +size(14vw, 14vw)
         background-color: lightgray
         border-radius: 50%
         display: flex
         color: white
         font-size: 20px
-        justify-content: center
-        align-items: center
+        +center
         transition: 1s
         cursor: pointer
 

@@ -1,31 +1,30 @@
 @import './../../../assets/styles/mixins.sass'
+@import './../../../assets/styles/variables.sass'
     
 .collection
     display: flex
     flex-wrap: wrap
     justify-content: center
 
-    &-image
-        +size(23vw, 23vw)
-        cursor: pointer
-
     &-element
         overflow: hidden
         display: flex
-        width: 23vw
-        height: 23vw
+        +size($collection__element-size, $collection__element-size)
         margin: .75vw
         border-radius: 50%
 
         &--worker
             border-radius: 50%
 
+        &__image
+            +size($collection__element-size, $collection__element-size)
+            cursor: pointer
+
         &__title
             display: flex
             justify-content: center
             text-align: center
-            background-color: #fff
-            width: 23vw
+            width: $collection__element-size
 
 .unchosen
     filter: grayscale(100%)

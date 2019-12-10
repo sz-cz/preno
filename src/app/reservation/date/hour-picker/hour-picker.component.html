@@ -1,10 +1,11 @@
-<p *ngIf="worker.workHours[day.getDay()] != 0" id="reservation-hour">Tego dnia {{worker.name}} pracuje w godzinach: {{worker.workHours[day.getDay()]}}</p>
-<p *ngIf="worker.workHours[day.getDay()] == 0">Niestety, pracownik ma wolne</p>
-<div class="slots">
-  <div class='slot' [ngClass]="{'slot--occupied': slot.getMilliseconds() === 1,
-  'slot--unable': slot.getMilliseconds() === 3,
-  'slot--chosen': slot >= chosenHour && slot < booking.endDate && slot.getMilliseconds() === 0}" *ngFor="let slot of hourSlots" (click)="pickHour(slot)">
-    <p class='slot__title'>{{slot | date: 'HH:mm'}}</p>
+<!-- <p *ngIf="worker.workHours[day.getDay()] != 0" id="reservation-hour">Tego dnia {{worker.name}} pracuje w godzinach: {{worker.workHours[day.getDay()]}}</p> -->
+<div class="container">
+  <p *ngIf="worker.workHours[day.getDay()] == 0">Niestety, pracownik ma wolne</p>
+  <div class="slots">
+    <div class='slot' [ngClass]="{'slot--occupied': slot.getMilliseconds() === 1,
+    'slot--unable': slot.getMilliseconds() === 3,
+    'slot--chosen': slot >= chosenHour && slot < booking.endDate && slot.getMilliseconds() === 0}" *ngFor="let slot of hourSlots" (click)="pickHour(slot)">
+      <p class='slot__title'>{{slot | date: 'HH:mm'}}</p>
+    </div>
   </div>
 </div>
-

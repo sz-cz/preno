@@ -1,3 +1,5 @@
+@import './assets/styles/variables'
+
 *
     margin: 0
     padding: 0
@@ -9,6 +11,12 @@ body
 a
     text-decoration: none
 
+.card
+    width: 90vw
+
+    &--borderless
+        box-shadow: none !important
+
 .title
     display: flex
     flex-basis: 100%
@@ -17,11 +25,12 @@ a
     margin: 10px 0
 
 .reservation-section
-    margin: 30px 0 0 0 
+    padding-top: $progress-bar-height
+    margin-top: -$progress-bar-height
+    margin-bottom: 30px
 
 
 .fake-day
     height: 12vw
     width: 12vw
     margin: 3px
-

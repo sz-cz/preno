@@ -5,6 +5,9 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './progress-bar.component.html',
   styleUrls: ['./progress-bar.component.sass']
 })
+
+
+
 export class ProgressBarComponent implements OnInit {
 
   @Input() booking
@@ -12,7 +15,9 @@ export class ProgressBarComponent implements OnInit {
   constructor() { }
 
 
+
   ngOnInit() {
   }
 
 }
+// window.addEventListener("hashchange", () => window.scrollTo(window.scrollX, window.scrollY - 40));

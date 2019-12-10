@@ -35,22 +35,28 @@ export class ReservationComponent implements OnInit {
 
   onPickedService = (service : Service) => {
     this.booking.service = service.key;
-    this.service = service
-    this.workers$ = this.workersService.findWorkers(service.key)
+    this.service = service;
+    this.workers$ = this.workersService.findWorkers(service.key);
+    // this.router.navigate(['#reservation-workers'])
   }
 
   onPickedWorker = (worker : Worker) => {
     this.booking.worker = worker.key;
     this.worker = worker;
+    // this.router.navigate(['#reservation-day'])
   }
   
   onPickedDate = (date : Date) => {
     this.booking.date = date
     this.booking.endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes() + this.service.duration)
+    // this.router.navigate(['#reservation-form'])
+
   }
 
   onCompletedForm = (form : CustomerForm) => {
     this.booking.customer = form
+    // this.router.navigate(['#reservation-summary'])
+
   }
 
   sendBooking = () => {

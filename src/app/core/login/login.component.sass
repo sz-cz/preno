@@ -1,10 +1,4 @@
 @import './../../../assets/styles/mixins.sass'
-    
-.background
-    background-color: #ddf
-    +size(100vh, 100vw)
-    display: flex
-    +center
 
 .form
     display: flex
@@ -22,13 +16,9 @@
     &__input
         width: 100%
 
-.example-card
-    width: 90vw
-
 .container
     display: flex
     flex-wrap: wrap
-    justify-content: center
-    align-items: center
+    +center
     min-height: 100vh
     background-image: url(../../../assets/images/backgrounds/greek-vase.png)

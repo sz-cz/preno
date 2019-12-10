@@ -1,7 +1,10 @@
 <nav>
-    <ul class="navigation">
-        <li class ="navigation__link">{{authService.getUser()?.email}}</li>
-        <li *ngIf="!authService.getUser()" class="navigation__link" [routerLink]="['/login']">Zaloguj</li>
-        <li *ngIf="authService.getUser()" class="navigation__link" (click)="logOut()">Wyloguj</li>
-    </ul>
+    <mat-toolbar class="navigation-bar">
+        <span [routerLink]="['']">preno</span>
+        <ul class="navigation-list">
+            <li *ngIf="authService.getUser()" class ="navigation-list__link" [routerLink]="['/admin']"><i class="navigation-list__icon im im-user-circle"></i>panel</li>
+            <li *ngIf="!authService.getUser()" class="navigation-list__link" [routerLink]="['/login']">zaloguj</li>
+            <li *ngIf="authService.getUser()" class="navigation-list__link" (click)="logOut()">wyloguj</li>
+        </ul>
+    </mat-toolbar>
 </nav>

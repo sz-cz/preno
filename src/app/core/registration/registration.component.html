@@ -1,17 +1,17 @@
 <div class="container">
-    <mat-card class="example-card">
+    <mat-card class="card">
             <mat-card-header>
                 <mat-card-title>Zarejestruj się</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" class="form">
-                    <mat-form-field class="form-field" class="form__input">
+                    <mat-form-field class="form__input">
                         <input matInput ngModel name="login" type="email" placeholder="adres email">
                     </mat-form-field>
-                    <mat-form-field class="form-field" class="form__input">
+                    <mat-form-field class="form__input">
                         <input matInput ngModel name="password" type="password" placeholder="hasło">
                     </mat-form-field>
-                    <mat-form-field class="form-field" class="form__input">
+                    <mat-form-field class="form__input">
                         <input matInput ngModel name="password2" type="password" placeholder="powtórz hasło">
                     </mat-form-field>
                     <div class="form__line">

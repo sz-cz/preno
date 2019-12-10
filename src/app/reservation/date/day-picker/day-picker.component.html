@@ -1,5 +1,5 @@
-<div id="reservation-day" class="container">
+<div class="container">
 <div class="days">
-    <div [ngClass]="{'chosen': chosenDay == day}" *ngFor="let day of days" class="day" (click)="pickDay(day)">{{day.getDate()}}</div>
+    <div [ngClass]="{'day--chosen': chosenDay == day}" *ngFor="let day of days" class="day" (click)="pickDay(day)">{{day.getDate()}}</div>
   </div>
 </div>

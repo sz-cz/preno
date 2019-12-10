@@ -1,10 +1,10 @@
 <div class="collection">
-    <div class="collect"  *ngFor="let element of elements | async">
+    <div  *ngFor="let element of elements | async">
         <div [ngClass]="{'unchosen': type == 'employees' && element.key != booking.worker && booking.worker != null
         || type == 'services' && element.key != booking.service && booking.service !=null,
         'chosen': type == 'employees' && element.key == booking.worker || type == 'services' && element.key == booking.service }"
         class="collection-element" (click)="pickElement(element)">
-            <img class="collection-image" src="{{element.image}}" alt={{element.name}}>
+            <img class="collection-element__image" src="{{element.image}}" alt={{element.name}}>
         </div>
         <p class="collection-element__title">{{element.name}}</p>
     </div>

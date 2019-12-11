@@ -11,7 +11,7 @@ import { ServiceDetailsComponent } from './services-management/service-details/s
 import { BookingDetailsComponent } from './bookings-management/booking-details/booking-details.component';
 import { ServiceFormComponent } from './services-management/service-form/service-form.component';
 import { WorkerFormComponent } from './workers-management/worker-form/worker-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
@@ -29,6 +29,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AdminRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    FormsModule,
     MatListModule,
     MatDividerModule,
     MatCardModule,

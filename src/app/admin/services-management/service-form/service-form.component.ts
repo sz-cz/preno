@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ServicesService } from 'src/app/core/services/services.service';
+import { Router } from '@angular/router';
+import { WorkersService } from 'src/app/core/services/workers.service';
 
 @Component({
   selector: 'pn-service-form',
@@ -9,7 +11,10 @@ import { ServicesService } from 'src/app/core/services/services.service';
 })
 export class ServiceFormComponent implements OnInit {
 
+  @ViewChild('pickWorkersForm', {static: false}) pickWorkersForm : NgForm;
+
   serviceForm : FormGroup;
+  workers$ = this.workersService.getWorkers() 
 
   private buildForm = () => this.serviceForm = this.formBuilder.group({
     name: ['', {validators: [Validators.required]}],
@@ -19,12 +24,25 @@ export class ServiceFormComponent implements OnInit {
     // key: '',
   })
 
-  addService = () => this.servicesService.addService(this.serviceForm.value)
-    .then(ref => ref, ref => ref)
+  addService = () => {
+    // this.bindWorkers()
+    // this.servicesService.addService(this.serviceForm.value)
+    //   .then(() => this.router.navigate(['/admin/services']), ref => ref)
+  }
 
-  constructor(private formBuilder : FormBuilder, private servicesService : ServicesService) { }
+  // bindWorkers = () => {
+  //   this.pickWorkersForm.value
+  //   Object.entries(this.pickWorkersForm.value).forEach(([key, value]) => {
+  //     if (value == true) {
+  //       console.log(key)
+  //     }
+  //   })
+  // }
+
+  constructor(private formBuilder : FormBuilder, private servicesService : ServicesService, private router : Router, private workersService : WorkersService) { }
 
   ngOnInit() {
+    this.workers$.subscribe()
     this.buildForm()
   }
 

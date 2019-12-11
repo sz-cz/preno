@@ -17,6 +17,12 @@
                 <div class="form-field">
                     <mat-checkbox formControlName="available" name="available"> Czy usługa ma być dostępna?</mat-checkbox>
                 </div>
+                <h3>Którzy pradownicy będą świadczyć tę usługę?</h3>
+                <form #pickWorkersForm="ngForm">
+                    <div *ngFor="let worker of workers$ | async" for="worker.key" class="form-field">
+                        <mat-checkbox ngModel name={{worker?.key}}>{{worker.name}}</mat-checkbox>
+                    </div>
+                </form>
                 <div class="form-field">
                         <button mat-raised-button color="primary" type="submit">Wyślij</button>
                 </div>

@@ -36,27 +36,27 @@ export class ReservationComponent implements OnInit {
   onPickedService = (service : Service) => {
     this.booking.service = service.key;
     this.service = service;
+    this.booking.date = null
+    this.booking.endDate = null
+    this.booking.worker = null
     this.workers$ = this.workersService.findWorkers(service.key);
-    // this.router.navigate(['#reservation-workers'])
   }
 
   onPickedWorker = (worker : Worker) => {
     this.booking.worker = worker.key;
     this.worker = worker;
-    // this.router.navigate(['#reservation-day'])
+    this.booking.date = null
+    this.booking.endDate = null
   }
   
   onPickedDate = (date : Date) => {
     this.booking.date = date
     this.booking.endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes() + this.service.duration)
-    // this.router.navigate(['#reservation-form'])
-
+    console.log(this.booking)
   }
 
   onCompletedForm = (form : CustomerForm) => {
     this.booking.customer = form
-    // this.router.navigate(['#reservation-summary'])
-
   }
 
   sendBooking = () => {
@@ -77,7 +77,6 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit() {
     this.services$.subscribe()
-    this.servicesService.getService('0IyxGP51E3rSvUZfJdPP').subscribe(item => console.log(item))
   }
 
 }

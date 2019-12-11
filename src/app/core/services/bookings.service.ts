@@ -29,7 +29,6 @@ export class BookingsService {
   }
 
   assignKey(booking) {
-    // console.log(service.payload.doc.id)
       return {...booking.payload.doc.data(), key: booking.payload.doc.id}
     }
 }

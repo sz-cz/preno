@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 
 @Component({
@@ -31,12 +31,19 @@ export class DateComponent implements OnInit {
     // console.log(this.daysNumber)
   }
 
+  ngOnChanges(changes : SimpleChanges) {
+    if(!changes['worker'].isFirstChange()) {
+      this.day = null
+      this.data.day = null
+    }
+  }
+
   onPickedDay = day => {
     this.day = day
     this.data.day = day.getDate();
     this.data.year = day.getFullYear();
     this.data.month = day.getMonth();
-    console.log(this.data)
+    console.log('wybieram datę'+this.data.day)
   }
 
   onPickedHour = date => {

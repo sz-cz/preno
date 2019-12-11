@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'pn-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.sass']
 })
-export class SummaryComponent implements OnInit {
+export class SummaryComponent implements OnInit, OnInit {
 
   @Output() booked = new EventEmitter()
 
@@ -20,6 +20,11 @@ export class SummaryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes : SimpleChanges) {
+    if(!changes['booking'].isFirstChange()) {
+    }
   }
 
 }

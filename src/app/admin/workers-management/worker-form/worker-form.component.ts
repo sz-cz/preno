@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { WorkersService } from 'src/app/core/services/workers.service';
 import { ServicesService } from 'src/app/core/services/services.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pn-worker-form',
@@ -10,43 +11,46 @@ import { ServicesService } from 'src/app/core/services/services.service';
 })
 export class WorkerFormComponent implements OnInit {
 
+  @ViewChild('pickServicesForm', {static: false}) pickServicesForm : NgForm;
   workerForm : FormGroup
 
-  buildForm = () => {this.workerForm = this.formBuilder.group({
-    name: ['Artur', {validators: [Validators.required]}],
+  buildForm = () => {
+    this.workerForm = this.formBuilder.group({
+    name: ['', {validators: [Validators.required]}],
     description: ['', {validators: [Validators.required]}],
     image: '',
-    services: this.formBuilder.group({
-      "0IyxGP51E3rSvUZfJdPP": false,
-      "80MBmjEOeSc44jluVWjf": false,
-      "ELaMKPQZ0ejHeaOzzBtS": false,
-      "UzXbii0DDveQJLcOQbAJ": false,
-      "sbTMY0WxJ3mh7vsDUPtK": false
-    }),
+    // services: this.formBuilder.group(this.mapControlPaths()),
+    services: {},
     workHours: this.formBuilder.array(['', '', '', '', '', '', ''])
   })
-  this.mapControlPaths()
   return this.workerForm
 }
 
   services = []
 
-  mapControlPaths = () => {
-    this.servicesService.getServicesKeys().subscribe(res => res.map(key => 
-      this.workerForm.value.services[key] = false
-        )
-    )
+  // mapControlPaths = () => {
+  //   let services = {}
+  //   this.servicesService.getServicesKeys().subscribe(res => res.map(key => 
+  //     services[key] = false
+  //       )
+  //   )
+  //   return services
+  // }
+
+  addWorker = () => {
+    this.workerForm.value.services = this.pickServicesForm.value
+    this.workersService.addWorker(this.workerForm.value)
+      .then(() => this.router.navigate(['/admin/workers']), ref => ref)
   }
 
-  addWorker = () => this.workersService.addWorker(this.workerForm.value)
-    .then(ref => ref, ref => ref)
 
-  constructor(private formBuilder : FormBuilder, private workersService : WorkersService, private servicesService : ServicesService) { }
+  constructor(private formBuilder : FormBuilder, private workersService : WorkersService, private servicesService : ServicesService, private router : Router) { }
 
   ngOnInit() {
     this.buildForm()
-    // this.mapControlPaths()
-    setTimeout(() => this.servicesService.getServices().subscribe(res =>  res.map(element => this.services.push(element))), 5000)
-    // this.servicesService.getServices().subscribe(res =>  res.map(element => this.services.push(element)))
+    this.servicesService.getServices().subscribe(res =>  res.map(element => {
+      this.services.push(element)
+    }
+    ))
   }
 }

@@ -11,10 +11,7 @@ export class FormComponent implements OnInit {
 
   constructor() { }
 
-  onSubmit = (form) => {
-    console.log(form.value)
-    this.completedForm.emit(form.value)
-  }
+  onSubmit = (form) => this.completedForm.emit(form.value)
 
   ngOnInit() {
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'pn-day-picker',
@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class DayPickerComponent implements OnInit {
 
   @Output() pickedDay = new EventEmitter()
+  @Input() worker
   chosenDay
 
   constructor() { }
@@ -16,6 +17,13 @@ export class DayPickerComponent implements OnInit {
     this.addPastDays()
     this.showDays(31)
   }
+
+  ngOnChanges(changes : SimpleChanges) {
+    if(!changes['worker'].isFirstChange()) {
+      this.chosenDay = null
+    }
+  }
+
   date = new Date()
   today = this.date.getDate()
   days = []
@@ -31,7 +39,7 @@ addPastDays = () => {
   const container = document.querySelector('.days')
   for (let i = 0; i < this.date.getDay(); i++) {
     let element = document.createElement('div')
-    element.classList.add('day--empty')
+    element.classList.add('day', 'day--empty')
     container.prepend(element)
   }
 }

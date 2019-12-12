@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { ReservationModule } from './reservation/reservation.module';
 import { ServicesService } from './core/services/services.service';
 import { SharedModule } from './shared/shared.module';
-import { NavigationComponent } from './core/navigation/navigation.component';
 import { CoreModule } from './core/core.module';
 import { WorkersService } from './core/services/workers.service';
 
@@ -18,6 +17,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './core/services/auth.service';
+import { UiService } from './core/services/ui.service';
 
 
 @NgModule({
@@ -36,7 +36,7 @@ import { AuthService } from './core/services/auth.service';
     BrowserAnimationsModule,
     AngularFireAuthModule
   ],
-  providers: [AngularFirestore, ServicesService, WorkersService, AuthService],
+  providers: [AngularFirestore, ServicesService, WorkersService, AuthService, UiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/core/services/services.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
   selector: 'pn-service-details',
@@ -12,12 +13,12 @@ export class ServiceDetailsComponent implements OnInit {
   service
   serviceKey
 
-  constructor(private servicesService : ServicesService, private route : ActivatedRoute, private router : Router) { }
+  constructor(private servicesService : ServicesService, private route : ActivatedRoute, private router : Router, private uiService : UiService) { }
 
-  deleteService = () => this.servicesService.deleteService(this.serviceKey).then(
-    () => this.router.navigate(['/admin/services']),
-    () => console.log('nie udało się')
-  )
+  deleteService = () => this.servicesService.deleteService(this.serviceKey)
+    .then(() => this.uiService.openToast('success', 'Usługa została usunięta'),
+          () => this.uiService.openToast('failure', 'Wystąpił błąd'))
+    .then(() => this.router.navigate(['/admin/services']))
 
   ngOnInit() {
     this.serviceKey = this.route.snapshot.params['key']

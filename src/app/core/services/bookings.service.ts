@@ -25,7 +25,7 @@ export class BookingsService {
 
   addBooking = booking => {
     const newBooking = new Booking(booking.service, booking.worker, booking.date, booking.endDate, booking.customer.name, booking.customer.email, booking.customer.phone)
-    this.db.collection(`bookings`).add({...newBooking})
+    return this.db.collection(`bookings`).add({...newBooking})
   }
 
   assignKey(booking) {

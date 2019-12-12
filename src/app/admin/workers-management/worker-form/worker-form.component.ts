@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { WorkersService } from 'src/app/core/services/workers.service';
 import { ServicesService } from 'src/app/core/services/services.service';
 import { Router } from '@angular/router';
+import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
   selector: 'pn-worker-form',
@@ -40,11 +41,13 @@ export class WorkerFormComponent implements OnInit {
   addWorker = () => {
     this.workerForm.value.services = this.pickServicesForm.value
     this.workersService.addWorker(this.workerForm.value)
+      .then(() => this.uiService.openToast('success', 'Pracownik został dodany'),
+            () => this.uiService.openToast('failure', 'Wystąpił błąd'))
       .then(() => this.router.navigate(['/admin/workers']), ref => ref)
   }
 
 
-  constructor(private formBuilder : FormBuilder, private workersService : WorkersService, private servicesService : ServicesService, private router : Router) { }
+  constructor(private formBuilder : FormBuilder, private workersService : WorkersService, private servicesService : ServicesService, private router : Router, private uiService : UiService) { }
 
   ngOnInit() {
     this.buildForm()

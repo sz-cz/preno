@@ -3,6 +3,7 @@ import { BookingsService } from 'src/app/core/services/bookings.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from 'src/app/core/services/services.service';
 import { WorkersService } from 'src/app/core/services/workers.service';
+import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
   selector: 'pn-booking-details',
@@ -21,13 +22,15 @@ export class BookingDetailsComponent implements OnInit {
     private servicesService : ServicesService,
     private workersService : WorkersService,
     private route : ActivatedRoute,
-    private router : Router) { }
+    private router : Router,
+    private uiService : UiService) { }
 
   deleteBooking = () => {
-    this.bookingsService.deleteBooking(this.bookingKey).then(
-      () => this.router.navigate(['/admin/bookings']),
-      () => console.log('nie udało się'))
-
+    this.bookingsService.deleteBooking(this.bookingKey)
+    .then(() => this.uiService.openToast('success', 'Rezerwacja została usunięta'),
+          () => this.uiService.openToast('failure', 'Wystąpił błąd'))
+    .then(
+          () => this.router.navigate(['/admin/bookings']))
   }
 
   ngOnInit() {

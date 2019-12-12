@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WorkersService } from 'src/app/core/services/workers.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingsService } from 'src/app/core/services/bookings.service';
+import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
   selector: 'pn-worker-details',
@@ -14,12 +15,12 @@ export class WorkerDetailsComponent implements OnInit {
   workerKey
   bookings$
 
-  constructor(private workersService : WorkersService, private bookingsService : BookingsService, private route : ActivatedRoute, private router : Router) { }
+  constructor(private workersService : WorkersService, private bookingsService : BookingsService, private route : ActivatedRoute, private router : Router, private uiService : UiService) { }
 
-  deleteWorker = () => this.workersService.deleteWorker(this.workerKey).then(
-    () => this.router.navigate(['/admin/workers']),
-    () => console.log('nie udało się')
-  )
+  deleteWorker = () => this.workersService.deleteWorker(this.workerKey)
+    .then(() => this.uiService.openToast('success', 'Pracownik został usunięty'),
+          () => this.uiService.openToast('failure', 'Wystąpił błąd'))
+    .then(() => this.router.navigate(['/admin/workers']))
 
   ngOnInit() {
     this.workerKey = this.route.snapshot.params['key']

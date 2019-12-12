@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
   selector: 'pn-day-picker',
@@ -11,7 +12,7 @@ export class DayPickerComponent implements OnInit, OnChanges {
   @Input() worker
   chosenDay
 
-  constructor() { }
+  constructor(private uiService : UiService) { }
 
   ngOnInit() {
     this.addPastDays()
@@ -33,8 +34,6 @@ export class DayPickerComponent implements OnInit, OnChanges {
 setDays = number => {
   for (let i = 0; i < number; i++) {
     let dat = new Date(this.date.getFullYear(), this.date.getMonth(), this.today + 1 + i)
-
-
     this.days.push(this.markDaysOff(dat))
   }
 }
@@ -54,6 +53,10 @@ addPastDays = () => {
 }
 
 pickDay = day => {
+  if (day.getMilliseconds() == 5) {
+    this.uiService.openToast('info', 'Pracownik ma wolne tego dnia')
+    return
+  }
   this.pickedDay.emit(day)
   this.chosenDay = day
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { BookingsService } from 'src/app/core/services/bookings.service';
+import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
   selector: 'pn-hour-picker',
@@ -19,7 +20,7 @@ export class HourPickerComponent implements OnInit, OnChanges {
   chosenHour
   bookings = []
 
-  constructor(private bookingsService : BookingsService) { }
+  constructor(private bookingsService : BookingsService, private uiService : UiService) { }
 
   markOccupiedSlots = () => {
     this.bookingsService.getBookings().subscribe(snapshot => snapshot.map(booking => {
@@ -61,7 +62,12 @@ availableHours = () => {
 }
 
   pickHour = date => {
-    if (date.getMilliseconds() == 1 || date.getMilliseconds() == 3) {
+    if (date.getMilliseconds() == 1) {
+      this.uiService.openToast('info', 'Ta godzina jest już zarezerwowana')
+      return
+    }
+    if (date.getMilliseconds() == 3) {
+      this.uiService.openToast('info', 'Zbyt mało czasu na tę usługę')
       return
     }
     this.pickedHour.emit(date)

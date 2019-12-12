@@ -43,7 +43,6 @@ export class DateComponent implements OnInit {
     this.data.day = day.getDate();
     this.data.year = day.getFullYear();
     this.data.month = day.getMonth();
-    console.log('wybieram datę'+this.data.day)
   }
 
   onPickedHour = date => {

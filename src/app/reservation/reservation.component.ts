@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../core/services/services.service';
-import { Router } from '@angular/router';
 import { WorkersService } from '../core/services/workers.service';
 import { BookingsService } from '../core/services/bookings.service';
 import { Observable } from 'rxjs';
 import { Booking, CustomerForm } from '../shared/models/booking.model';
 import { Service } from '../shared/models/service.model';
 import { Worker } from '../shared/models/worker.model';
+import { UiService } from '../core/services/ui.service';
 
 @Component({
   selector: 'pn-reservation',
@@ -52,7 +52,6 @@ export class ReservationComponent implements OnInit {
   onPickedDate = (date : Date) => {
     this.booking.date = date
     this.booking.endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes() + this.service.duration)
-    console.log(this.booking)
   }
 
   onCompletedForm = (form : CustomerForm) => {
@@ -60,7 +59,9 @@ export class ReservationComponent implements OnInit {
   }
 
   sendBooking = () => {
-    this.bookingService.addBooking(this.booking);
+    this.bookingService.addBooking(this.booking)
+      .then(() => this.uiService.openToast('success', 'Rezerwacja została dodana'),
+            () => this.uiService.openToast('failure', 'Wystąpił błąd'));
     this.booking.service = null;
     this.booking.worker = null;
     this.booking.date = null;
@@ -72,7 +73,8 @@ export class ReservationComponent implements OnInit {
 
   constructor(private servicesService : ServicesService,
     private workersService : WorkersService, 
-    private bookingService : BookingsService) { }
+    private bookingService : BookingsService,
+    private uiService : UiService) { }
 
   ngOnInit() {
     this.services$.subscribe()

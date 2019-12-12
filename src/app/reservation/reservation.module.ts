@@ -17,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [ReservationComponent, ServicesComponent, WorkersComponent, DateComponent, FormComponent, SummaryComponent, ProgressBarComponent, DayPickerComponent, HourPickerComponent],
@@ -30,7 +31,8 @@ import {MatListModule} from '@angular/material/list';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule
   ]
 })
 export class ReservationModule { }

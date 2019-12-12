@@ -72,8 +72,7 @@ export class ReservationComponent implements OnInit {
 
   constructor(private servicesService : ServicesService,
     private workersService : WorkersService, 
-    private bookingService : BookingsService, 
-    private router : Router) { }
+    private bookingService : BookingsService) { }
 
   ngOnInit() {
     this.services$.subscribe()

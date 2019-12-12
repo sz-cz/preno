@@ -5,7 +5,7 @@ import { Component, OnInit, OnChanges, Output, EventEmitter, Input, SimpleChange
   templateUrl: './day-picker.component.html',
   styleUrls: ['./day-picker.component.sass']
 })
-export class DayPickerComponent implements OnInit {
+export class DayPickerComponent implements OnInit, OnChanges {
 
   @Output() pickedDay = new EventEmitter()
   @Input() worker
@@ -15,12 +15,14 @@ export class DayPickerComponent implements OnInit {
 
   ngOnInit() {
     this.addPastDays()
-    this.showDays(31)
+    this.setDays(31)
   }
 
   ngOnChanges(changes : SimpleChanges) {
     if(!changes['worker'].isFirstChange()) {
       this.chosenDay = null
+      this.days = []
+      this.setDays(31)
     }
   }
 
@@ -28,11 +30,18 @@ export class DayPickerComponent implements OnInit {
   today = this.date.getDate()
   days = []
 
-showDays = number => {
+setDays = number => {
   for (let i = 0; i < number; i++) {
     let dat = new Date(this.date.getFullYear(), this.date.getMonth(), this.today + 1 + i)
-    this.days.push(dat)
+
+
+    this.days.push(this.markDaysOff(dat))
   }
+}
+
+markDaysOff = (day : Date) => {
+  if(this.worker.workHours[day.getDay()] == '') day.setMilliseconds(5)
+  return day
 }
 
 addPastDays = () => {

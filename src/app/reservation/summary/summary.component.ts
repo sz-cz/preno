@@ -17,6 +17,16 @@ export class SummaryComponent implements OnInit, OnInit {
     this.booked.emit()
   }
 
+  reset = () => {
+    this.booking.service = null;
+    this.booking.worker = null;
+    this.booking.date = null;
+    this.booking.endDate = null;
+    this.booking.customer.name = '';
+    this.booking.customer.email = '';
+    this.booking.customer.phone = '';
+  }
+
   constructor() { }
 
   ngOnInit() {

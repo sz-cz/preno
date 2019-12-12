@@ -14,7 +14,7 @@
                     <mat-form-field class="form-field">
                         <input matInput formControlName="image" type="string" placeholder="ścieżka do zdjęcia">
                     </mat-form-field>
-                    <h3>Jakie usługi świadczy pracownik</h3>
+                    <h3 class="form-header">Jakie usługi świadczy pracownik</h3>
                     <form #pickServicesForm="ngForm">
                         <div *ngFor="let service of services" for="services" class="form-field">
                             <mat-checkbox ngModel name={{service?.key}}>{{service.name}}</mat-checkbox>
@@ -25,9 +25,9 @@
                             <mat-checkbox formControlName={{service?.key}} name="service">{{service.name}}</mat-checkbox>
                         </div>
                     </div> -->
-                    <h3>Godziny pracy (format: xx:xx-xx:xx)</h3>
+                    <h3 class="form-header">Godziny pracy (format: HH:MM-HH:MM)</h3>
                     <div formGroupName="workHours">
-                        <mat-form-field *ngFor="let element of ['poniedziałek','wtorek','środa','czwartek','piątek','sobota','niedziela']; let i = index" for="workHours" class="form-field--small">
+                        <mat-form-field *ngFor="let element of ['niedziela', 'poniedziałek','wtorek','środa','czwartek','piątek','sobota']; let i = index" for="workHours" class="form-field--small">
                             <input matInput formControlName={{i}} type="string" placeholder={{element}}>
                         </mat-form-field>
                     </div>

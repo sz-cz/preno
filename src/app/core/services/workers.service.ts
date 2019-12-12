@@ -24,7 +24,9 @@ export class WorkersService {
 
   deleteWorker = key => this.db.collection('workers').doc(key).delete()
 
-  // setService = (key, service) => this.db.collection('workers').doc(key).set({services: {service}})
+  setService = (key, service) => this.db.collection('workers').doc(key).update({
+    [`services.${service}`]: true
+  })
 
   assignKey(worker) {
       return {...worker.payload.doc.data(), key: worker.payload.doc.id}

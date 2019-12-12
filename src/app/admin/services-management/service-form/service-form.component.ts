@@ -25,19 +25,21 @@ export class ServiceFormComponent implements OnInit {
   })
 
   addService = () => {
-    // this.bindWorkers()
-    // this.servicesService.addService(this.serviceForm.value)
-    //   .then(() => this.router.navigate(['/admin/services']), ref => ref)
+    this.servicesService.addService(this.serviceForm.value)
+      .then(data => this.bindWorkers(data.id))
+      .then(() => this.router.navigate(['/admin/services']))
   }
 
-  // bindWorkers = () => {
-  //   this.pickWorkersForm.value
-  //   Object.entries(this.pickWorkersForm.value).forEach(([key, value]) => {
-  //     if (value == true) {
-  //       console.log(key)
-  //     }
-  //   })
-  // }
+  bindWorkers = (serviceID : string) => {
+    // this.pickWorkersForm.value
+    Object.entries(this.pickWorkersForm.value).forEach(([key, value]) => {
+      if (value == true) {
+        this.workersService.setService(key, serviceID)
+        console.log(value)
+        console.log(key)
+      }
+    })
+  }
 
   constructor(private formBuilder : FormBuilder, private servicesService : ServicesService, private router : Router, private workersService : WorkersService) { }
 

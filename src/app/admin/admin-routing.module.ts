@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './admin.component';
 import { BookingsManagementComponent } from './bookings-management/bookings-management.component';
 import { WorkersManagementComponent } from './workers-management/workers-management.component';
 import { ServicesManagementComponent } from './services-management/services-management.component';
@@ -9,10 +8,14 @@ import { ServiceDetailsComponent } from './services-management/service-details/s
 import { BookingDetailsComponent } from './bookings-management/booking-details/booking-details.component';
 import { ServiceFormComponent } from './services-management/service-form/service-form.component';
 import { WorkerFormComponent } from './workers-management/worker-form/worker-form.component';
+import { UsersManagementComponent } from './users-management/users-management.component';
+import { UserDetailsComponent } from './users-management/user-details/user-details.component';
 
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'bookings'},
+  {path: 'users', component: UsersManagementComponent},
+  {path: 'users/:key', component: UserDetailsComponent},
   {path: 'bookings', component: BookingsManagementComponent},
   {path: 'bookings/:key', component: BookingDetailsComponent},
   {path: 'workers', component: WorkersManagementComponent},

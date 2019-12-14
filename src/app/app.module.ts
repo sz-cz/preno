@@ -18,6 +18,7 @@ import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './core/services/auth.service';
 import { UiService } from './core/services/ui.service';
+import { UsersService } from './core/services/users.service';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { UiService } from './core/services/ui.service';
     BrowserAnimationsModule,
     AngularFireAuthModule
   ],
-  providers: [AngularFirestore, ServicesService, WorkersService, AuthService, UiService],
+  providers: [AngularFirestore, ServicesService, WorkersService, AuthService, UiService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

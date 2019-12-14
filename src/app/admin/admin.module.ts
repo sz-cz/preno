@@ -20,10 +20,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { UsersManagementComponent } from './users-management/users-management.component';
+import { UserDetailsComponent } from './users-management/user-details/user-details.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, BookingsManagementComponent, WorkersManagementComponent, ServicesManagementComponent, WorkerDetailsComponent, ServiceDetailsComponent, BookingDetailsComponent, ServiceFormComponent, WorkerFormComponent],
+  declarations: [AdminComponent, BookingsManagementComponent, WorkersManagementComponent, ServicesManagementComponent, WorkerDetailsComponent, ServiceDetailsComponent, BookingDetailsComponent, ServiceFormComponent, WorkerFormComponent, UsersManagementComponent, UserDetailsComponent],
   exports: [AdminComponent],
   imports: [
     CommonModule,

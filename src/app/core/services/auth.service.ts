@@ -21,4 +21,6 @@ export class AuthService {
 
   register = (email, password) => this.fireAuth.auth.createUserWithEmailAndPassword(email, password)
 
+  // delete = key => this.fireAuth.auth
+
 }

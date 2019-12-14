@@ -1,0 +1,18 @@
+<div class="container">
+    <mat-card class="admin-card">
+            <mat-card-header>
+                <mat-card-title>Lista użytkowników</mat-card-title>
+                <mat-card-subtitle>Naciśnij, aby zobaczyć szczegóły</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+            <mat-list>
+                <div *ngFor="let user of users$ | async"
+                [routerLink]="['/admin/users', user.key]"
+                >
+                    <mat-list-item >{{user?.email}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list>
+        </mat-card-content>
+        </mat-card>
+</div>

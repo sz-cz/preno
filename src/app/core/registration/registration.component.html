@@ -14,6 +14,12 @@
                     <mat-form-field class="form__input">
                         <input matInput ngModel name="password2" type="password" placeholder="powtórz hasło">
                     </mat-form-field>
+                    <mat-form-field class="form__input">
+                        <input matInput ngModel name="name" type="text" placeholder="imię">
+                    </mat-form-field>
+                    <mat-form-field class="form__input">
+                        <input matInput ngModel name="phone" type="text" placeholder="numer telefonu">
+                    </mat-form-field>
                     <div class="form__line">
                         <button type="submit" mat-raised-button>zarejestruj</button>
                         <button [routerLink]="['/login']" mat-raised-button>wróć</button>

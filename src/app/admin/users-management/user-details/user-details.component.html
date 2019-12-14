@@ -1,0 +1,26 @@
+<div class="container">
+    <mat-card class="admin-card">
+        <mat-card-header>
+            <mat-card-title>Szczegóły użytkownika</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+        <mat-list>
+            <mat-list-item >
+                <h4 mat-line>Login:</h4>
+                <p mat-line>{{user?.email}}</p>
+            </mat-list-item>
+            <mat-list-item >
+                <h4 mat-line>Imię:</h4>
+                <p mat-line>{{user?.name}}</p>
+            </mat-list-item>
+            <mat-list-item >
+                <h4 mat-line>Numer telefonu:</h4>
+                <p mat-line>{{user?.phone}}</p>
+            </mat-list-item>
+        </mat-list>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="deleteUser()" mat-raised-button color="warn">usuń użytkownika</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

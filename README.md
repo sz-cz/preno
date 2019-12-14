@@ -1,27 +1,27 @@
 # Preno
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
+Create a new account or use the following data:
+login: admin@admin.pl
+password: qwaszx
+
+## Preno is a six-step reservation system:
+1. Choose a service.
+2. Choose a worker that provides the service (sometimes there's one worker to choose, sometimes there are all of them).
+3. Choose a day (but some days are days off - different days for different workers).
+4. Choose a free hour: if your worker is busy, time slots are red; if duration of your service makes reservation impossible - time slots are orange.
+5. Enter your data.
+6. Check your reservation and book your reservation.
+
+## Admin features
+- lists of all workers, reservations and services
+- details of every worker, reservaion, service
+- delete a worker, service or a reservation
+- add a worker or a service and bind them to each other
+
+## Technologies used in this project
+Angular, Angular Material, Angular Firebase, Firebase Firestore, Firebase Auth, SASS
 
 ## Development server
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

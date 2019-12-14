@@ -8,7 +8,7 @@ import { UiService } from 'src/app/core/services/ui.service';
 @Component({
   selector: 'pn-worker-form',
   templateUrl: './worker-form.component.html',
-  styleUrls: ['./worker-form.component.sass']
+  styleUrls: ['./worker-form.component.sass', './../../admin.component.sass']
 })
 export class WorkerFormComponent implements OnInit {
 

@@ -8,7 +8,7 @@ import { UiService } from 'src/app/core/services/ui.service';
 @Component({
   selector: 'pn-booking-details',
   templateUrl: './booking-details.component.html',
-  styleUrls: ['./booking-details.component.sass']
+  styleUrls: ['./booking-details.component.sass', './../../admin.component.sass']
 })
 export class BookingDetailsComponent implements OnInit {
 

@@ -1,19 +1,23 @@
+@import './../../../../assets/styles/mixins.sass'
+@import './../../../../assets/styles/variables.sass'
+    
 .container
     display: flex
     justify-content: center
     margin-bottom: 20px
 
+
 .days
     display: flex
     justify-content: flex-start
     flex-wrap: wrap
+    flex-shrink: 1
     
     .day
         display: flex
         justify-content: center
         align-items: center
-        height: 12vw
-        width: 12vw
+        +size($day-size, $day-size)
         border-radius: 50%
         background-color: #f5f5f5
         border: 1px dashed gray
@@ -30,3 +34,21 @@
         &--off
             background-color: #ddd
             color: gray
+
+
+@media (orientation: landscape)
+    .days
+        width: calc((#{$day-size-landscape}) * 8)
+    
+        .day
+            +size($day-size-landscape, $day-size-landscape)
+
+@media (min-width: 800px)
+    .days
+        .day
+            font-size: 18px
+
+@media (orientation: portrait) and (min-width: 700px)
+    .days
+        .day
+            font-size: 24px

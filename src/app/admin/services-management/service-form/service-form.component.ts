@@ -8,7 +8,7 @@ import { UiService } from 'src/app/core/services/ui.service';
 @Component({
   selector: 'pn-service-form',
   templateUrl: './service-form.component.html',
-  styleUrls: ['./service-form.component.sass']
+  styleUrls: ['./service-form.component.sass', './../../admin.component.sass']
 })
 export class ServiceFormComponent implements OnInit {
 

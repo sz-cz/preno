@@ -21,6 +21,49 @@
         transition: 1s
         cursor: pointer
 
+@media (orientation: landscape)
+    .progress-bar
+        height: 85vh
+        position: sticky
+        left: 0
+        top: 0
+        flex-direction: column-reverse
+        width: 80px
+        justify-content: space-evenly
+
+        &__circle
+            +size(14vh, 14vh)
+            background-color: lightgray
+            border-radius: 50%
+            display: flex
+            color: white
+            font-size: 20px
+            +center
+
+@media (orientation: landscape) and (min-width: 1000px)
+    .progress-bar
+        width: 100px
+
+        &__circle
+            +size(90px, 90px)
+
+@media (orientation: portrait) and (min-width: 700px)
+    .progress-bar
+        height: $progress-bar-height-800px
+        margin-right: 20px
+
+        &__circle
+            +size(9vw, 9vw)
+
+            i
+                font-size: 30px
+
+.done
+    background-color: green
+
+.pending
+    background-color: orange
+
 .done
     background-color: green
 

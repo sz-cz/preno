@@ -4,7 +4,7 @@ import { WorkersService } from 'src/app/core/services/workers.service';
 @Component({
   selector: 'pn-workers-management',
   templateUrl: './workers-management.component.html',
-  styleUrls: ['./workers-management.component.sass']
+  styleUrls: ['./workers-management.component.sass', './../admin.component.sass']
 })
 export class WorkersManagementComponent implements OnInit {
 

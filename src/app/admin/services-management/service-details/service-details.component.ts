@@ -6,7 +6,7 @@ import { UiService } from 'src/app/core/services/ui.service';
 @Component({
   selector: 'pn-service-details',
   templateUrl: './service-details.component.html',
-  styleUrls: ['./service-details.component.sass']
+  styleUrls: ['./service-details.component.sass', './../../admin.component.sass']
 })
 export class ServiceDetailsComponent implements OnInit {
 

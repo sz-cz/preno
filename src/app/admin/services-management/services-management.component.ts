@@ -4,7 +4,7 @@ import { ServicesService } from 'src/app/core/services/services.service';
 @Component({
   selector: 'pn-services-management',
   templateUrl: './services-management.component.html',
-  styleUrls: ['./services-management.component.sass']
+  styleUrls: ['./services-management.component.sass', './../admin.component.sass']
 })
 export class ServicesManagementComponent implements OnInit {
 

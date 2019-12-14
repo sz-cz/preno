@@ -6,6 +6,7 @@
 .slots
     display: flex
     flex-wrap: wrap
+    justify-content: center
 
     .slot
         display: flex
@@ -17,13 +18,24 @@
 
         &--occupied
             background-color: red
-            border: none
+            border: 1px solid red
         
         &--unable
             background-color: orange
-            border: none
+            border: 1px solid orange
 
         &--chosen
             background-color: green
             color: white
-            border: none
+            border: 1px solid green
+
+@media (min-width: 800px)
+    .slots
+        width: 60%
+        .slot
+            font-size: 18px
+
+@media (orientation: portrait) and (min-width: 700px)
+    .slots
+        .slot
+            font-size: 22px

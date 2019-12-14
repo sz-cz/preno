@@ -7,7 +7,7 @@ import { UiService } from 'src/app/core/services/ui.service';
 @Component({
   selector: 'pn-worker-details',
   templateUrl: './worker-details.component.html',
-  styleUrls: ['./worker-details.component.sass']
+  styleUrls: ['./worker-details.component.sass', './../../admin.component.sass']
 })
 export class WorkerDetailsComponent implements OnInit {
 

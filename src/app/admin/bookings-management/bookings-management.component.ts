@@ -6,7 +6,7 @@ import { WorkersService } from 'src/app/core/services/workers.service';
 @Component({
   selector: 'pn-bookings-management',
   templateUrl: './bookings-management.component.html',
-  styleUrls: ['./bookings-management.component.sass']
+  styleUrls: ['./bookings-management.component.sass', './../admin.component.sass']
 })
 export class BookingsManagementComponent implements OnInit {
 

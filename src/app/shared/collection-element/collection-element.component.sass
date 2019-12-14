@@ -14,9 +14,6 @@
         margin-top: 10px
         border-radius: 50%
 
-        // &--worker
-        //     border-radius: 50%
-
         &__image
             +size($collection__element-size, $collection__element-size)
             cursor: pointer
@@ -32,3 +29,46 @@
 
 .chosen
     border: 3px solid green
+
+@media (orientation: landscape)
+    .collection
+        &-element
+            +size($collection__element-size-landscape, $collection__element-size-landscape)
+        
+            &__image
+                +size($collection__element-size-landscape, $collection__element-size-landscape)
+
+            &__title
+                width: $collection__element-size-landscape
+
+@media (orientation: landscape) and (min-width: 800px)
+    .collection
+        &-element
+            +size($collection__element-size-landscape-800px, $collection__element-size-landscape-800px)
+        
+            &__image
+                +size($collection__element-size-landscape-800px, $collection__element-size-landscape-800px)
+
+            &__title
+                width: $collection__element-size-landscape-800px
+
+@media (orientation: portrait) and (min-width: 700px)
+    .collection
+        &-element
+            +size($collection__element-size-portrait, $collection__element-size-portrait)
+        
+            &__image
+                +size($collection__element-size-portrait, $collection__element-size-portrait)
+
+            &__title
+                font-size: 20px
+                width: $collection__element-size-portrait    
+
+// @media (min-width: 1700px)
+//     .collection
+//         width: 20vw
+//         &-element
+//             +size(8vw, 8vw)
+
+//             &__image, &__title
+//                 +size(8vw, 8vw)

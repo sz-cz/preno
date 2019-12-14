@@ -1,6 +1,21 @@
-.form__line
+.list__line
     display: flex
     justify-content: center
 
 .form__button
     margin: 0 10px
+
+@media (orientation: landscape)
+    .list
+        display: flex
+        flex-wrap: wrap
+
+        .list__line
+            flex-basis: 50%
+
+
+@media (min-width: 800px)
+    .list
+        .list__line
+            flex-basis: 23%
+            border-left: 2px solid lightgrey

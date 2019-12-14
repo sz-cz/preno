@@ -1,7 +1,26 @@
 .container
     padding: 0 5px
 
+.main
+    display: flex
+    flex-grow: 1
+    justify-content: center
+    flex-direction: column
+
 .sticky
     position: sticky
     z-index: 9
     top: 0
+
+@media (orientation: landscape)
+    .container
+        display: flex
+
+// @media (min-width: 1700px)
+//     .sticky
+//         display: none
+    
+//     .main
+//         flex-grow: 0
+//         justify-content: flex-start
+//         flex-direction: row-reverse

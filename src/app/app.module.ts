@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './core/services/auth.service';
 import { UiService } from './core/services/ui.service';
 import { UsersService } from './core/services/users.service';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { UsersService } from './core/services/users.service';
     MatDatepickerModule,
     AdminModule,
     BrowserAnimationsModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireFunctionsModule
   ],
   providers: [AngularFirestore, ServicesService, WorkersService, AuthService, UiService, UsersService],
   bootstrap: [AppComponent]

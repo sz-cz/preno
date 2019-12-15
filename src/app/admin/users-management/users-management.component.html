@@ -6,9 +6,7 @@
             </mat-card-header>
             <mat-card-content>
             <mat-list>
-                <div *ngFor="let user of users$ | async"
-                [routerLink]="['/admin/users', user.key]"
-                >
+                <div *ngFor="let user of users$ | async" [routerLink]="['/admin/users', user.key]">
                     <mat-list-item >{{user?.email}}</mat-list-item>
                     <mat-divider></mat-divider>
                 </div>

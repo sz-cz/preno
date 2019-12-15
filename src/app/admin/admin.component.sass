@@ -2,14 +2,17 @@
     background-image: url(../../assets/images/backgrounds/greek-vase.png)
     min-height: calc(100vh - 30px)
 
-.navigation
+.admin-navigation
     display: flex
     justify-content: flex-end
+    background-color: #222
     margin: 10px 0
 
     &__link
         display: flex
         justify-content: center
+        color: #ddd
+        cursor: pointer
         list-style: none
         flex-basis: 25%
 
@@ -24,3 +27,6 @@
 @media (min-width: 700px)
     .admin-card
         width: 600px
+
+.mat-list-item
+    cursor: pointer

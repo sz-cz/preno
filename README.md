@@ -13,8 +13,8 @@ password: qwaszx
 6. Check your reservation and book your reservation.
 
 ## Admin features
-- lists of all workers, reservations and services
-- details of every worker, reservaion, service
+- lists of all workers, reservations, services and user accounts,
+- details of every worker, reservaion, service and users,
 - delete a worker, service or a reservation
 - add a worker or a service and bind them to each other
 

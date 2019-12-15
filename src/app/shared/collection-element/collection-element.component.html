@@ -1,5 +1,5 @@
 <div class="collection">
-    <div  *ngFor="let element of elements | async">
+    <div *ngFor="let element of elements | async" class="element-container">
         <div [ngClass]="{'unchosen': type == 'employees' && element.key != booking.worker && booking.worker != null
         || type == 'services' && element.key != booking.service && booking.service !=null,
         'chosen': type == 'employees' && element.key == booking.worker || type == 'services' && element.key == booking.service }"

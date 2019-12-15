@@ -15,17 +15,12 @@
         border-radius: 50%
 
         &__image
-            +size($collection__element-size, $collection__element-size)
+            +size(100%, 100%)
             cursor: pointer
 
         &__title
-            display: flex
-            justify-content: center
             text-align: center
             width: $collection__element-size
-
-.unchosen
-    filter: grayscale(100%)
 
 .chosen
     border: 3px solid green
@@ -34,20 +29,11 @@
     .collection
         &-element
             +size($collection__element-size-landscape, $collection__element-size-landscape)
-        
-            &__image
-                +size($collection__element-size-landscape, $collection__element-size-landscape)
-
-            &__title
-                width: $collection__element-size-landscape
 
 @media (orientation: landscape) and (min-width: 800px)
     .collection
         &-element
             +size($collection__element-size-landscape-800px, $collection__element-size-landscape-800px)
-        
-            &__image
-                +size($collection__element-size-landscape-800px, $collection__element-size-landscape-800px)
 
             &__title
                 width: $collection__element-size-landscape-800px
@@ -56,19 +42,26 @@
     .collection
         &-element
             +size($collection__element-size-portrait, $collection__element-size-portrait)
-        
-            &__image
-                +size($collection__element-size-portrait, $collection__element-size-portrait)
 
             &__title
                 font-size: 20px
                 width: $collection__element-size-portrait    
 
-// @media (min-width: 1700px)
-//     .collection
-//         width: 20vw
-//         &-element
-//             +size(8vw, 8vw)
+@media (min-width: 1400px)
+    .collection
+        width: 100%
 
-//             &__image, &__title
-//                 +size(8vw, 8vw)
+        &-element
+            +size(8vw, 8vw)
+            margin-bottom: 0
+            border: 5px solid #222
+
+            &__title
+                width: 100%
+                color: white
+    
+    .chosen
+        border: 6px solid white
+
+.unchosen
+    filter: grayscale(100%)

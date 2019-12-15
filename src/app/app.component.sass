@@ -1,9 +1,5 @@
-.wrapper
-    min-height: 100vh
-    background-color: #fff
-    // padding: 0 10px
-    // background-image: url(../assets/images/backgrounds/greek-vase.png)
+@import './../assets/styles/variables'
 
-    // @media(min-width: 1600px)
-    //     width: 900px
-    //     margin: 0 auto
+.wrapper
+    min-height: calc(100vh - #{$navigation-bar-height})
+    background-color: #fff

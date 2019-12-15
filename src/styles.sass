@@ -41,6 +41,7 @@ a
     margin-top: -$progress-bar-height
     display: flex
     flex-direction: column
+    align-items: center
     margin-bottom: 30px
 
     @media (orientation: landscape)
@@ -48,10 +49,8 @@ a
         margin-top: 0
         padding-top: 0
     
-    @media (min-width: 1700px)
+    @media (min-width: 1600px)
         flex-basis: 20%
-        background-color: #fff
-
 
 .day--empty
     +size($day-size, $day-size)
@@ -79,3 +78,25 @@ a
 @media (min-width: 800px)
     .form-field
         width: 70%
+
+@media (min-width: 1400px)
+    .title
+        font-size: 2em
+        text-transform: lowercase
+
+        &--white
+            color: white
+    
+    .form-field
+        width: 100%
+    
+    .day--empty
+        +size(40px, 40px)
+        margin: 3px
+
+    .card
+
+        &--borderless
+            box-shadow: none !important
+            background-color: transparent
+            // width: 80%

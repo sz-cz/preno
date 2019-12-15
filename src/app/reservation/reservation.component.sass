@@ -1,3 +1,5 @@
+@import './../../assets/styles/variables'
+
 .container
     padding: 0 5px
 
@@ -16,11 +18,44 @@
     .container
         display: flex
 
-// @media (min-width: 1700px)
-//     .sticky
-//         display: none
+@media (min-width: 1400px)
+    .container
+        padding: 0
+
+    .sticky
+        display: none
     
-//     .main
-//         flex-grow: 0
-//         justify-content: flex-start
-//         flex-direction: row-reverse
+    .main
+        justify-content: flex-start
+        flex-direction: row-reverse
+
+        // :nth-child(even)
+        //     background-image: url(../../assets/images/backgrounds/tiny-squares.png)
+    
+    .step-slot
+        min-height: calc(100vh - #{$navigation-bar-height})
+        // background-image: url(../../assets/images/backgrounds/dot-grid.png)
+        flex-basis: 20%
+        padding: 6px
+
+    #services-slot
+        background-color: $services-color
+
+    #workers-slot
+        background-color: $workers-color
+        // flex-basis: 10%
+
+    #date-slot
+        background-color: $date-color
+        flex-basis: 25%
+
+    #form-slot
+        background-color: $form-color
+        flex-basis: 15%
+
+    #summary-slot
+        background-color: $summary-color
+
+    
+
+

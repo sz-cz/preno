@@ -3,10 +3,20 @@
         <pn-progress-bar [booking]="booking"></pn-progress-bar>
     </div>
     <div class="main">
-        <pn-summary (booked)="sendBooking()"[booking]="booking" [worker]="worker" [service]="service" *ngIf="!(booking.customer.name === '' && booking.customer.phone === '')"></pn-summary>
-        <pn-form (completedForm)="onCompletedForm($event)" *ngIf="!(booking.date === null)"></pn-form>
-        <pn-date [booking]="booking" [worker]="worker" [service]="service" (pickedDate)="onPickedDate($event)"  *ngIf="!(booking.worker === null)"></pn-date>
-        <pn-workers [booking]="booking" [workers]="workers$" (pickedWorker)="onPickedWorker($event)" *ngIf="!(booking.service === null)"></pn-workers>
-        <pn-services [booking]="booking" [services]="services$" (pickedService)="onPickedService($event)"></pn-services>
+        <div class="step-slot" id="summary-slot">
+            <pn-summary (booked)="sendBooking()"[booking]="booking" [worker]="worker" [service]="service" *ngIf="!(booking.customer.name === '' && booking.customer.phone === '')"></pn-summary>
+        </div>
+        <div class="step-slot" id="form-slot">
+            <pn-form (completedForm)="onCompletedForm($event)" *ngIf="!(booking.date === null)"></pn-form>
+        </div>
+        <div class="step-slot" id="date-slot">
+            <pn-date [booking]="booking" [worker]="worker" [service]="service" (pickedDate)="onPickedDate($event)"  *ngIf="!(booking.worker === null)"></pn-date>
+        </div>
+        <div class="step-slot" id="workers-slot">
+            <pn-workers [booking]="booking" [workers]="workers$" (pickedWorker)="onPickedWorker($event)" *ngIf="!(booking.service === null)"></pn-workers>
+        </div>
+        <div class="step-slot" id="services-slot">
+            <pn-services [booking]="booking" [services]="services$" (pickedService)="onPickedService($event)"></pn-services>
+        </div>
     </div>
 </div>

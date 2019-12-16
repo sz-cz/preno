@@ -1,5 +1,16 @@
 <div class="container">
     <mat-card class="admin-card">
+        <mat-card-header>
+            <mat-card-title>Twoje uprawnienia</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+        <mat-list>
+            <mat-list-item >Pracownik: {{auth?.isWorker}}</mat-list-item>
+            <mat-list-item >Admin: {{auth?.isAdmin}}</mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    </mat-card>
+    <mat-card class="admin-card">
             <mat-card-header>
                 <mat-card-title>Lista użytkowników</mat-card-title>
                 <mat-card-subtitle>Naciśnij, aby zobaczyć szczegóły</mat-card-subtitle>

@@ -17,10 +17,15 @@
                 <h4 mat-line>Numer telefonu:</h4>
                 <p mat-line>{{user?.phone}}</p>
             </mat-list-item>
+            <!-- <mat-list-item >
+                <h4 mat-line>Uprawnienia</h4>
+                <p mat-line>Admin: {{user?.phone}}</p>
+            </mat-list-item> -->
         </mat-list>
         </mat-card-content>
         <mat-card-actions>
-            <button (click)="deleteUser()" mat-raised-button color="warn">usuń użytkownika</button>
+            <!-- <button (click)="deleteUser()" mat-raised-button color="warn">usuń</button> -->
+            <button (click)="makeAdmin()" mat-raised-button color="warn">nadaj admina</button>
         </mat-card-actions>
     </mat-card>
 </div>

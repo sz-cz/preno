@@ -14,6 +14,8 @@ export class UserDetailsComponent implements OnInit {
 
   constructor(private usersService : UsersService, private route : ActivatedRoute, private authService : AuthService) { }
 
+  makeAdmin = () => this.authService.makeAdmin(this.user.email)
+
   // deleteUser = () => {
 
   // }

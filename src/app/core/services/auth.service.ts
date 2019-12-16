@@ -14,7 +14,7 @@ export class AuthService {
     isWorker: false,
     isAdmin: false
   }
-  private isAdmin = false
+
   private addAdminRole = this.fireFunctions.httpsCallable('addAdminRole')
   private addWorkerRole = this.fireFunctions.httpsCallable('addWorkerRole')
 
@@ -26,16 +26,18 @@ export class AuthService {
   login = (email, password) => this.fireAuth.auth.signInWithEmailAndPassword(email, password)
     .then(credentials => {
       this.user = credentials.user
-      credentials.user.getIdTokenResult().then(result => {
-        this.userRoles.isWorker = result.claims.worker
-        this.userRoles.isAdmin = result.claims.admin
+      return credentials.user.getIdTokenResult().then(result => {
+        result.claims.worker == true ? this.userRoles.isWorker = result.claims.worker : this.userRoles.isWorker = false;
+        result.claims.admin == true ? this.userRoles.isAdmin = result.claims.admin : this.userRoles.isAdmin = false;
+        return result.claims.admin
       })
     })
 
   logout = () => this.fireAuth.auth.signOut()
     .then(() => {
       this.user = undefined;
-      this.userRoles = undefined;
+      this.userRoles.isAdmin = undefined;
+      this.userRoles.isWorker = undefined;
     })
     .then(() => this.router.navigate(['']))
 
@@ -43,7 +45,7 @@ export class AuthService {
 
   makeAdmin = email => this.addAdminRole({email: email}).toPromise().then(result => console.log(result))
 
-  makeWorker = email => this.addWorkerRole({email: email})
+  // makeWorker = email => this.addWorkerRole({email: email})
 
   // delete = key => this.fireAuth.auth
 

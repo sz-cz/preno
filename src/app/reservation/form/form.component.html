@@ -4,15 +4,15 @@
             <mat-card-content>
                 <form #reservationForm="ngForm" (ngSubmit)="onSubmit(reservationForm)" class="form">
                     <mat-form-field class="form-field">
-                        <input matInput ngModel name="name" type="text">
+                        <input matInput [(ngModel)]="form.name" name="name" type="text">
                         <mat-placeholder class="form-field__placeholder">imię</mat-placeholder>
                     </mat-form-field>
                     <mat-form-field class="form-field">
-                        <input matInput ngModel name="email" type="email">
+                        <input matInput [(ngModel)]="form.email" name="email" type="email">
                         <mat-placeholder class="form-field__placeholder">email</mat-placeholder>
                     </mat-form-field>
                     <mat-form-field class="form-field">
-                        <input matInput ngModel name="phone" type="text">
+                        <input matInput [(ngModel)]="form.phone" name="phone" type="text">
                         <mat-placeholder class="form-field__placeholder">numer telefonu</mat-placeholder>
                     </mat-form-field>
                     <div class="form-field">

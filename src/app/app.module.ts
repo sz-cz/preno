@@ -20,6 +20,7 @@ import { AuthService } from './core/services/auth.service';
 import { UiService } from './core/services/ui.service';
 import { UsersService } from './core/services/users.service';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import { UserModule } from './user/user.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
     AdminModule,
     BrowserAnimationsModule,
     AngularFireAuthModule,
-    AngularFireFunctionsModule
+    AngularFireFunctionsModule,
+    UserModule
   ],
   providers: [AngularFirestore, ServicesService, WorkersService, AuthService, UiService, UsersService],
   bootstrap: [AppComponent]

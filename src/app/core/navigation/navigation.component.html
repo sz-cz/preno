@@ -2,7 +2,7 @@
     <mat-toolbar class="navigation-bar">
         <span [routerLink]="['']">preno</span>
         <ul class="navigation-list">
-            <li *ngIf="authService.getUser()" class ="navigation-list__link" [routerLink]="['/admin']"><i class="navigation-list__icon im im-user-circle"></i>panel</li>
+            <li *ngIf="authService.getUser()" class ="navigation-list__link" (click)="choosePanel()"><i class="navigation-list__icon im im-user-circle"></i>panel</li>
             <li *ngIf="!authService.getUser()" class="navigation-list__link" [routerLink]="['/login']">zaloguj</li>
             <li *ngIf="authService.getUser()" class="navigation-list__link" (click)="logOut()">wyloguj</li>
         </ul>

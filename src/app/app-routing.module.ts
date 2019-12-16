@@ -5,6 +5,7 @@ import { ReservationComponent } from './reservation/reservation.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegistrationComponent } from './core/registration/registration.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { UserComponent } from './user/user.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,11 @@ const routes: Routes = [
   {path: 'admin',
   loadChildren: './admin/admin.module#AdminModule',
   canActivate: [AuthGuard],
-  component: AdminComponent}
+  component: AdminComponent},
+  {path: 'user',
+  loadChildren: './user/user.module#UserModule',
+  canActivate: [AuthGuard],
+  component: UserComponent}
 ];
 
 @NgModule({

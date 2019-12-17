@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ServicesService } from 'src/app/core/services/services.service';
+import { Service } from '../../shared/models/service.model';
+import { map } from 'rxjs/operators'
+
 
 @Pipe({
   name: 'service'
@@ -8,10 +11,7 @@ export class ServicePipe implements PipeTransform {
   constructor(private servicesService : ServicesService) {}
 
   transform(value: string, ...args: any[]): any {
-    let serviceName
-    console.log('pipa działa')
-
-    return this.servicesService.getService(value).subscribe(item => item)
+    return this.servicesService.getService(value).pipe(map((service : Service) => service.name))
   }
 
 }

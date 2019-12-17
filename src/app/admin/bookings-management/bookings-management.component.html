@@ -7,8 +7,11 @@
             <mat-card-content>
             <mat-list>
                 <div *ngFor="let booking of bookings$ | async" [routerLink]="['/admin/bookings', booking.key]">
-                    <mat-list-item >Data: {{booking?.date.toDate() | date: 'd.MM.yyyy HH:mm'}}-{{booking?.endDate.toDate() | date: 'HH:mm'}} <br>
-                        Klient: {{booking?.customer.name}}</mat-list-item>
+                    <mat-list-item >
+                        <p mat-line>Data: {{booking?.date.toDate() | date: 'd.MM.yyyy HH:mm'}}-{{booking?.endDate.toDate() | date: 'HH:mm'}}</p>
+                        <p mat-line>Usługa: {{booking?.service | service | async}}</p>
+                        <p mat-line>Klient: {{booking?.customer.email}}</p>
+                    </mat-list-item>
                     <mat-divider></mat-divider>
                 </div>
             </mat-list>

@@ -23,4 +23,18 @@
             <!-- <button (click)="deleteUser()" mat-raised-button color="warn">usuń</button> -->
         </mat-card-actions>
     </mat-card>
+    <mat-card class="user-card">
+        <mat-card-header>
+            <mat-card-title>Twoje rezerwacje</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngFor="let booking of bookings$">
+                <mat-list-item >
+                    <p mat-line>{{booking?.date.toDate() | date: 'd.MM.yyyy HH:mm'}}</p>
+                    <p mat-line>{{booking?.service | service | async}}</p>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-card-content>
+    </mat-card>
 </div>

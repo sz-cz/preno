@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators'
+import { ServicesService } from './services.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { map, filter } from 'rxjs/operators'
 
 export class BookingsService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore, private servicesService : ServicesService) { }
 
   getBookings = () : Observable<any> => {
     return this.db.collection(`bookings`, ref => ref.orderBy('date')).snapshotChanges()
@@ -20,6 +22,9 @@ export class BookingsService {
   
   findBookings = workerKey => this.db.collection('bookings', ref => ref.where(`worker`, "==", workerKey)).snapshotChanges()
     .pipe(map((snapshot : any) => snapshot.map(worker => this.assignKey(worker))))
+
+  getUserBookings = email => this.db.collection('bookings', ref => ref.where(`customer.email`, "==", email)).snapshotChanges()
+    .pipe(map((snapshot : any) => snapshot.map(booking => this.assignKey(booking))))
 
   deleteBooking = (key) => this.db.collection(`bookings`).doc(key).delete()
 

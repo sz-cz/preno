@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { UiService } from '../services/ui.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,14 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService : AuthService, private router : Router) { }
+  constructor(private authService : AuthService, private router : Router, private uiService : UiService) { }
 
   logIn = loginForm => this.authService.login(loginForm.value.login, loginForm.value.password)
     .then(admin => {
       if (admin == true) this.router.navigate(['/admin'])
       else this.router.navigate([''])
     })
-    // .then(() => this.router.navigate(['/admin']))
+    .catch(error => this.uiService.openToast('failure', error))
 
   ngOnInit() {
   }

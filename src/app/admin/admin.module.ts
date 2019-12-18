@@ -22,6 +22,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UsersManagementComponent } from './users-management/users-management.component';
 import { UserDetailsComponent } from './users-management/user-details/user-details.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { UserDetailsComponent } from './users-management/user-details/user-detai
     MatInputModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule
   ]
 })
 export class AdminModule { }

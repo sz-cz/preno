@@ -1,12 +1,31 @@
-<div class="admin-wrapper">
-    <nav>
-        <ul class="admin-navigation">
-            <li class="admin-navigation__link" [routerLink]="['users']">Profile</li>
-            <li class="admin-navigation__link" [routerLink]="['bookings']">Rezerwacje</li>
-            <li class="admin-navigation__link" [routerLink]="['workers']">Pracownicy</li>
-            <li class="admin-navigation__link" [routerLink]="['services']">Usługi</li>
-        </ul>
-    </nav>
-    <router-outlet></router-outlet>
-</div>
+<nav>
+    <ul class="admin-navigation">
+        <li class="admin-navigation__link" [routerLink]="['users']">Profile</li>
+        <li class="admin-navigation__link" [routerLink]="['bookings']">Rezerwacje</li>
+        <li class="admin-navigation__link" [routerLink]="['workers']">Pracownicy</li>
+        <li class="admin-navigation__link" [routerLink]="['services']">Usługi</li>
+    </ul>
+</nav>
+<mat-sidenav-container class="admin-wrapper">
+    <mat-sidenav class="admin-sidebar" mode="side" opened>
+        <mat-nav-list>
+            <h4 class="navigation__subheader" mat-list-item>Rezerwacje</h4>
+            <a mat-list-item [routerLink]="['bookings']">Lista rezerwacji</a>
+            <mat-divider></mat-divider>
+            <h4 class="navigation__subheader" mat-list-item>Pracownicy</h4>
+            <a mat-list-item [routerLink]="['workers']">Lista pracownikówy</a>
+            <a mat-list-item [routerLink]="['workers/add']">Dodaj pracownika</a>
+            <mat-divider></mat-divider>
+            <h4 class="navigation__subheader" mat-list-item>Usługi</h4>
+            <a mat-list-item [routerLink]="['services']">Lista usług</a>
+            <a mat-list-item [routerLink]="['services/add']">Dodaj usługę</a>
+            <mat-divider></mat-divider>
+            <h4 class="navigation__subheader" mat-list-item>Użytkownicy</h4>
+            <a mat-list-item [routerLink]="['users']">Lista użytkowników</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
 

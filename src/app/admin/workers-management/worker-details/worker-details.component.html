@@ -27,6 +27,7 @@
                     <mat-list>
                         <mat-list-item *ngFor="let booking of bookings$ | async" [routerLink]="['/admin/bookings', booking.key]">
                                 <h4 mat-line>{{booking.date.toDate() | date: 'd.MM.yyyy'}}</h4>
+                                <p mat-line>{{booking.service | service | async }}</p>
                                 <p mat-line>{{booking.date.toDate() | date: 'HH:mm'}}-{{booking?.endDate.toDate() | date: 'HH:mm'}}</p>
                         </mat-list-item>
                     </mat-list>

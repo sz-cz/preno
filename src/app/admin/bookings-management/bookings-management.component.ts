@@ -10,18 +10,15 @@ import { WorkersService } from 'src/app/core/services/workers.service';
 })
 export class BookingsManagementComponent implements OnInit {
 
-  bookings$ = this.bookingsService.getBookings()
-  // services$ = this.servicesService.getServices()
+  bookings$ = this.bookingsService.getUpcomingBookings()
+  pastBookings$ = this.bookingsService.getPastBookings()
   workers$ = this.workersService.getWorkers()
 
   constructor(private bookingsService : BookingsService, private servicesService : ServicesService, private workersService : WorkersService) { }
 
-  // getServiceName = key => this.servicesService.getService(key).subscribe(item => console.log(item))
-
   ngOnInit() {
       this.bookings$.subscribe()
-      // this.services$.subscribe()
-
+      this.pastBookings$ = this.bookingsService.getPastBookings()
   }
 
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import { ServicesService } from './services.service';
 
 
@@ -11,16 +11,29 @@ import { ServicesService } from './services.service';
 
 export class BookingsService {
 
+  today = new Date()
+
   constructor(private db: AngularFirestore, private servicesService : ServicesService) { }
 
   getBookings = () : Observable<any> => {
     return this.db.collection(`bookings`, ref => ref.orderBy('date')).snapshotChanges()
     .pipe(map(response => response.map(booking => this.assignKey(booking))))
   }
+
+  getUpcomingBookings = () : Observable<any> => {
+    return this.db.collection(`bookings`, ref => ref.where(`date`, ">", this.today).orderBy('date')).snapshotChanges()
+    .pipe(map(response => response.map(booking => this.assignKey(booking))))
+  }
+
+  getPastBookings = () : Observable<any> => {
+    return this.db.collection(`bookings`, ref => ref.where(`date`, "<=", this.today).orderBy('date', 'desc')).snapshotChanges()
+    .pipe(map(response => response.map(booking => this.assignKey(booking))))
+  }
+
   getBooking = key => this.db.collection(`bookings`).doc(key).snapshotChanges()
     .pipe(map(booking => booking.payload.data()))
   
-  findBookings = workerKey => this.db.collection('bookings', ref => ref.where(`worker`, "==", workerKey)).snapshotChanges()
+  findBookings = workerKey => this.db.collection('bookings', ref => ref.where(`worker`, "==", workerKey).where('date', '>', this.today).orderBy('date')).snapshotChanges()
     .pipe(map((snapshot : any) => snapshot.map(worker => this.assignKey(worker))))
 
   getUserBookings = email => this.db.collection('bookings', ref => ref.where(`customer.email`, "==", email)).snapshotChanges()

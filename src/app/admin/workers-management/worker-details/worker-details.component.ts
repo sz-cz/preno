@@ -27,7 +27,6 @@ export class WorkerDetailsComponent implements OnInit {
     this.workersService.getWorker(this.route.snapshot.params['key']).subscribe(worker => {
       this.worker = worker;
       this.bookings$ = this.bookingsService.findBookings(this.worker.key)
-      console.log(this.bookings$)
     })
   }
 

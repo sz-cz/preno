@@ -47,7 +47,7 @@ addPastDays = () => {
   const container = document.querySelector('.days')
   for (let i = 0; i < this.date.getDay(); i++) {
     let element = document.createElement('div')
-    element.classList.add('day', 'day--empty')
+    element.classList.add('days__day', 'days__day--empty')
     container.prepend(element)
   }
 }

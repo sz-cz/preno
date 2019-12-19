@@ -13,10 +13,16 @@
         margin: .75vw
         margin-top: 10px
         border-radius: 50%
+        +center
 
         &__image
             +size(100%, 100%)
             cursor: pointer
+            transition: .3s
+
+            &:hover
+                +size(110%, 110%)
+                filter: contrast(120%)
 
         &__title
             text-align: center

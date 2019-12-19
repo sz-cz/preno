@@ -1,20 +1,24 @@
-.navigation-bar
+.top-bar
     height: 40px
     justify-content: space-between
-    
-.navigation-list
-    display: flex
-    justify-content: flex-end
-    padding: 10px 0
-    font-size: 16px
 
-    &__link
-        display: flex
-        justify-content: center
-        list-style: none
-        margin-left: 10px
-        flex-basis: 25%
+    &__title
+        cursor: pointer
     
-    &__icon
-        margin-right: 4px
-        transform: (translate(0,3px))
+    &__navigation-list
+        display: flex
+        justify-content: flex-end
+        padding: 10px 0
+        font-size: 16px
+
+        .navigation-list__link
+            display: flex
+            justify-content: center
+            list-style: none
+            margin-left: 10px
+            flex-basis: 25%
+            cursor: pointer
+        
+        .navigation-list__icon
+            margin-right: 4px
+            transform: (translateY(3px))

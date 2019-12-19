@@ -1,5 +1,6 @@
 <div class="container">
   <div class="days">
-      <div [ngClass]="{'day--chosen': chosenDay == day, 'day--off': day.getMilliseconds() == 5}" *ngFor="let day of days" class="day" (click)="pickDay(day)">{{day.getDate()}}</div>
+      <div [ngClass]="{'days__day--chosen': chosenDay == day, 'days__day--off': day.getMilliseconds() == 5}"
+        *ngFor="let day of days" class="days__day" (click)="pickDay(day)">{{day.getDate()}}</div>
     </div>
 </div>

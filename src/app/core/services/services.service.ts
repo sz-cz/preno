@@ -24,7 +24,6 @@ export class ServicesService {
   deleteService = key => this.db.collection('services').doc(key).delete()
 
     assignKey(service) {
-      // console.log(service.payload.doc.id)
         return {...service.payload.doc.data(), key: service.payload.doc.id}
       }
 

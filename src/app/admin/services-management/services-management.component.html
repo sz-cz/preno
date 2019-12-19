@@ -10,7 +10,7 @@
             <mat-card-content>
                 <mat-list>
                     <div *ngFor="let service of services$ | async">
-                        <mat-list-item [routerLink]="['/admin/services', service.key]">{{service.name}}</mat-list-item>
+                        <mat-list-item class="clickable" [routerLink]="['/admin/services', service.key]">{{service.name}}</mat-list-item>
                         <mat-divider></mat-divider>
                     </div>
             

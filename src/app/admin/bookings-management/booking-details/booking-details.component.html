@@ -5,11 +5,11 @@
                 </mat-card-header>
                 <mat-card-content>
                 <mat-list>
-                    <mat-list-item >
+                    <mat-list-item>
                         <h4 mat-line>Usługa:</h4>
                         <p mat-line>{{service?.name}}</p>
                     </mat-list-item>
-                    <mat-list-item >
+                    <mat-list-item class="clickable" [routerLink]="['/admin/workers', worker.key]">
                             <h4 mat-line>Pracownik:</h4>
                             <p mat-line>{{worker?.name}}</p>
                     </mat-list-item>
@@ -31,11 +31,6 @@
                             <h4 mat-line>Nr telefonu:</h4>
                             <p mat-line>{{booking?.customer.phone}}</p>
                     </mat-list-item>
-                    <!-- <h3 mat-subheader>Pozostałe informacje</h3>
-                    <mat-list-item >
-                            <h4 mat-line>Identyfikator</h4>
-                            <p mat-line></p>
-                    </mat-list-item> -->
                 </mat-list>
             </mat-card-content>
             <mat-card-actions>

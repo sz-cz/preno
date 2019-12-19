@@ -10,7 +10,7 @@
         <mat-card-content>
         <mat-list>
             <div *ngFor="let worker of workers$ | async">
-                <mat-list-item [routerLink]="['/admin/workers', worker.key]">{{worker.name}}</mat-list-item>
+                <mat-list-item class="clickable" [routerLink]="['/admin/workers', worker.key]">{{worker.name}}</mat-list-item>
                 <mat-divider></mat-divider>
             </div>
         </mat-list>

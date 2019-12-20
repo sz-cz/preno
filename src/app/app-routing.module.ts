@@ -6,6 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { RegistrationComponent } from './core/registration/registration.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { UserComponent } from './user/user.component';
+import { Page404Component } from './core/page404/page404.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'user',
   loadChildren: './user/user.module#UserModule',
   canActivate: [AuthGuard],
-  component: UserComponent}
+  component: UserComponent},
+  {path: '**', component: Page404Component, data: { is404: true }}
 ];
 
 @NgModule({

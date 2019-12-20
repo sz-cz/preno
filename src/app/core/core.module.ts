@@ -10,11 +10,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { RegistrationComponent } from './registration/registration.component';
+import { Page404Component } from './page404/page404.component';
 
 
 
 @NgModule({
-  declarations: [NavigationComponent, LoginComponent, RegistrationComponent],
+  declarations: [NavigationComponent, LoginComponent, RegistrationComponent, Page404Component],
   exports: [NavigationComponent],
   imports: [
     CommonModule,

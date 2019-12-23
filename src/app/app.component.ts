@@ -11,12 +11,10 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  items : Observable<any>
+  title = 'preno';
   is404 = false
 
-  constructor(db: AngularFirestore, private router : Router, private route : ActivatedRoute) {
-    this.items = db.collection('items').valueChanges();
-  }
+  constructor(private router : Router, private route : ActivatedRoute) {  }
 
   showNavbar = () => {
     if (
@@ -34,6 +32,4 @@ export class AppComponent implements OnInit {
           )
       });
   }
-
-  title = 'preno';
 }

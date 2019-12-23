@@ -6,7 +6,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange
   templateUrl: './date.component.html',
   styleUrls: ['./date.component.sass']
 })
-export class DateComponent implements OnInit {
+export class DateComponent implements OnInit, OnChanges {
 
   @Input() booking
   @Input() worker

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'pn-collection-element',
@@ -6,6 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./collection-element.component.sass']
 })
 export class CollectionElementComponent implements OnInit {
+
+  showSpinner = true
 
   @Input() elements
   @Input() type
@@ -21,6 +23,14 @@ export class CollectionElementComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.elements.subscribe(response => response ? this.showSpinner = false : this.showSpinner = true)
   }
+
+  // ngOnChanges(changes : SimpleChanges) {
+  //   if(changes['elements']) {
+  //     this.showSpinner = true
+  //     this.elements.subscribe(response => response ? this.showSpinner = false : this.showSpinner = true)
+  //   }
+  // }
 
 }

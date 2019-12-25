@@ -18,11 +18,10 @@ export class ServiceFormComponent implements OnInit {
   workers$ = this.workersService.getWorkers() 
 
   private buildForm = () => this.serviceForm = this.formBuilder.group({
-    name: ['', {validators: [Validators.required]}],
-    duration: ['', {validators: [Validators.required]}],
+    name: ['', {validators: [Validators.required, Validators.minLength(3)]}],
+    duration: ['', {validators: [Validators.required, Validators.min(5), Validators.max(120)]}],
     available: '',
     image: '',
-    // key: '',
   })
 
   addService = () => {
@@ -34,12 +33,9 @@ export class ServiceFormComponent implements OnInit {
   }
 
   bindWorkers = (serviceID : string) => {
-    // this.pickWorkersForm.value
     Object.entries(this.pickWorkersForm.value).forEach(([key, value]) => {
       if (value == true) {
         this.workersService.setService(key, serviceID)
-        console.log(value)
-        console.log(key)
       }
     })
   }

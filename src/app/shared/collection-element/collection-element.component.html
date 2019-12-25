@@ -5,7 +5,8 @@
         || type == 'services' && element.key != booking.service && booking.service !=null,
         'chosen': type == 'employees' && element.key == booking.worker || type == 'services' && element.key == booking.service }"
         class="collection-element" (click)="pickElement(element)">
-            <img class="collection-element__image" src="{{element.image}}" alt={{element.name}}>
+            <img *ngIf="element.image" class="collection-element__image" src="{{element.image}}" alt={{element.name}}>
+            <p *ngIf="!element.image" class="collection-element__initial">{{element.name | slice:0:1}}</p>
         </div>
         <p class="collection-element__title">{{element.name}}</p>
     </div>

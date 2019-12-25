@@ -24,7 +24,8 @@ password: 123456
 - make a user an admin
 
 ## User panel features
-- see your data
+- see your data,
+- see your reservations
 
 ## Technologies used in this project
 Angular, Angular Material, Angular Firebase, Firebase Firestore, Firebase Auth, SASS

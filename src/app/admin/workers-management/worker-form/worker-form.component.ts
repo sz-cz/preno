@@ -17,8 +17,8 @@ export class WorkerFormComponent implements OnInit {
 
   buildForm = () => {
     this.workerForm = this.formBuilder.group({
-    name: ['', {validators: [Validators.required]}],
-    description: ['', {validators: [Validators.required]}],
+    name: ['', {validators: [Validators.required, Validators.minLength(2)]}],
+    description: '',
     image: '',
     // services: this.formBuilder.group(this.mapControlPaths()),
     services: {},

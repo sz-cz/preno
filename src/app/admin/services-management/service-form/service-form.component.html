@@ -7,15 +7,21 @@
             <form [formGroup]="serviceForm" (submit)="addService()">
                 <mat-form-field class="form-field">
                     <input matInput formControlName="name" type="text" placeholder="nazwa">
+                    <mat-error *ngIf="serviceForm.get('name').hasError('required')">Pole wymagane</mat-error>
+                    <mat-error *ngIf="serviceForm.get('name').hasError('minlength')">Nazwa musi mieć przynajmniej 3 znaki</mat-error>
                 </mat-form-field>
                 <mat-form-field class="form-field">
-                    <input matInput formControlName="duration" type="number" placeholder="ile trwa">
+                    <input matInput formControlName="duration" type="number" placeholder="ile trwa (w minutach)">
+                    <mat-error *ngIf="serviceForm.get('duration').hasError('required')">Pole wymagane</mat-error>
+                    <mat-error *ngIf="serviceForm.get('duration').hasError('min')">Usługa musi trwać min. 5 minut</mat-error>
+                    <mat-error *ngIf="serviceForm.get('duration').hasError('max')">Usługa może trwać max. 120 minut</mat-error>
                 </mat-form-field>
                 <mat-form-field class="form-field">
                     <input matInput formControlName="image" type="string" placeholder="ścieżka do zdjęcia">
+                    <mat-hint>Jeśli nie podasz, wyświetli się inicjał</mat-hint>
                 </mat-form-field>
                 <div class="form-field">
-                    <mat-checkbox formControlName="available" name="available"> Czy usługa ma być dostępna?</mat-checkbox>
+                    <mat-checkbox formControlName="available" name="available" checked> Czy usługa ma być włączona?</mat-checkbox>
                 </div>
                 <h3 class="form-header">Którzy pracownicy będą świadczyć tę usługę?</h3>
                 <form #pickWorkersForm="ngForm">
@@ -24,9 +30,8 @@
                     </div>
                 </form>
                 <div class="form-field">
-                        <button mat-raised-button color="primary" type="submit">Wyślij</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="serviceForm.invalid">Wyślij</button>
                 </div>
-
             </form>
         </mat-card-content>
     </mat-card>

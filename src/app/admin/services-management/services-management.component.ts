@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicesService } from 'src/app/core/services/services.service';
+import { ServicesService } from './../../core/services';
+import { Observable } from 'rxjs';
+import { Service } from 'src/app/shared/models';
 
 @Component({
   selector: 'pn-services-management',
@@ -7,8 +9,7 @@ import { ServicesService } from 'src/app/core/services/services.service';
   styleUrls: ['./services-management.component.sass', './../admin.component.sass']
 })
 export class ServicesManagementComponent implements OnInit {
-
-  services$ = this.servicesService.getServices()
+  services$ : Observable<Service[]> = this.servicesService.getServices()
 
   constructor(private servicesService : ServicesService) { }
 

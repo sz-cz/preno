@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { UiService } from '../services/ui.service';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService, UiService } from './../../services';
 
 @Component({
   selector: 'pn-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })
-export class LoginComponent implements OnInit {
-  constructor(private authService : AuthService, private router : Router, private uiService : UiService) { }
+export class LoginComponent {
+  constructor(
+    private authService : AuthService, 
+    private router : Router, 
+    private uiService : UiService) { }
 
   logIn = loginForm => this.authService.login(loginForm.value.login, loginForm.value.password)
     .then(admin => {
@@ -17,8 +19,4 @@ export class LoginComponent implements OnInit {
       else this.router.navigate([''])
     })
     .catch(error => this.uiService.openToast('failure', error))
-
-  ngOnInit() {
-  }
-
 }

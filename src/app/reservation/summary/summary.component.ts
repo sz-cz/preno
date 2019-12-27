@@ -1,21 +1,18 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Booking, Worker, Service } from './../../shared/models';
 
 @Component({
   selector: 'pn-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.sass']
 })
-export class SummaryComponent implements OnInit, OnInit {
+export class SummaryComponent {
+  @Output() booked = new EventEmitter();
+  @Input() booking : Booking;
+  @Input() worker : Worker;
+  @Input() service : Service;
 
-  @Output() booked = new EventEmitter()
-
-  @Input() booking
-  @Input() worker
-  @Input() service
-
-  book = () => {
-    this.booked.emit()
-  }
+  book = () => this.booked.emit();
 
   reset = () => {
     this.booking.service = null;
@@ -26,15 +23,4 @@ export class SummaryComponent implements OnInit, OnInit {
     this.booking.customer.email = '';
     this.booking.customer.phone = '';
   }
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  ngOnChanges(changes : SimpleChanges) {
-    if(!changes['booking'].isFirstChange()) {
-    }
-  }
-
 }

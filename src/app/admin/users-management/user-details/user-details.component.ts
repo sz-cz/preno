@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UsersService } from 'src/app/core/services/users.service';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService, UsersService } from './../../../core/services';
+import { User } from './../../../shared/models/user.model';
 
 @Component({
   selector: 'pn-user-details',
@@ -9,10 +9,12 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./user-details.component.sass', './../../admin.component.sass']
 })
 export class UserDetailsComponent implements OnInit {
+  user : User
 
-  user
-
-  constructor(private usersService : UsersService, private route : ActivatedRoute, private authService : AuthService) { }
+  constructor(
+    private usersService : UsersService, 
+    private route : ActivatedRoute, 
+    private authService : AuthService) { }
 
   makeAdmin = () => this.authService.makeAdmin(this.user.email)
 
@@ -21,8 +23,6 @@ export class UserDetailsComponent implements OnInit {
   // }
 
   ngOnInit() {
-    this.usersService.getUser(this.route.snapshot.params['key']).subscribe(user => {
-      this.user = user;
-  })}
-
+    this.usersService.getUser(this.route.snapshot.params['key']).subscribe((user : User) => this.user = user)
+  }
 }

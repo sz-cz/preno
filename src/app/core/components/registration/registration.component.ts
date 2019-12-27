@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsersService } from '../services/users.service';
-import { UiService } from '../services/ui.service';
+import { AuthService, UiService, UsersService } from './../../services'
 
 @Component({
   selector: 'pn-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.sass']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
 
-  constructor(private authService : AuthService, private router : Router, private userService : UsersService, private uiService : UiService) { }
+  constructor(
+    private authService : AuthService, 
+    private router : Router, 
+    private userService : UsersService, 
+    private uiService : UiService) { }
 
   register = registerForm => {
     if(registerForm.value.password == registerForm.value.password2) {
@@ -20,11 +22,7 @@ export class RegistrationComponent implements OnInit {
         .then(() => this.uiService.openToast('success', 'Użytkownik został zarejestrowany'))
         .then(() => this.router.navigate(['/login']))
         .catch(error => this.uiService.openToast('failure', error))
-    }
+    };
     this.uiService.openToast('failure', 'Podane hasła są różne')
-
   }
-  ngOnInit() {
-  }
-
 }

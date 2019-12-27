@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'pn-progress-bar',
@@ -6,18 +6,6 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./progress-bar.component.sass']
 })
 
-
-
-export class ProgressBarComponent implements OnInit {
-
+export class ProgressBarComponent {
   @Input() booking
-
-  constructor() { }
-
-
-
-  ngOnInit() {
-  }
-
 }
-// window.addEventListener("hashchange", () => window.scrollTo(window.scrollX, window.scrollY - 40));

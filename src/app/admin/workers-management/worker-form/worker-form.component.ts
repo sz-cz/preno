@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { WorkersService } from 'src/app/core/services/workers.service';
-import { ServicesService } from 'src/app/core/services/services.service';
 import { Router } from '@angular/router';
-import { UiService } from 'src/app/core/services/ui.service';
+import { ServicesService, UiService, WorkersService } from './../../../core/services';
+import { Service } from './../../../shared/models';
 
 @Component({
   selector: 'pn-worker-form',
@@ -11,49 +10,39 @@ import { UiService } from 'src/app/core/services/ui.service';
   styleUrls: ['./worker-form.component.sass', './../../admin.component.sass']
 })
 export class WorkerFormComponent implements OnInit {
-
   @ViewChild('pickServicesForm', {static: false}) pickServicesForm : NgForm;
-  workerForm : FormGroup
+  workerForm : FormGroup;
 
-  buildForm = () => {
+  buildForm = () : FormGroup => {
     this.workerForm = this.formBuilder.group({
     name: ['', {validators: [Validators.required, Validators.minLength(2)]}],
     description: '',
     image: '',
-    // services: this.formBuilder.group(this.mapControlPaths()),
     services: {},
     workHours: this.formBuilder.array(['', '', '', '', '', '', ''])
   })
   return this.workerForm
 }
 
-  services = []
-
-  // mapControlPaths = () => {
-  //   let services = {}
-  //   this.servicesService.getServicesKeys().subscribe(res => res.map(key => 
-  //     services[key] = false
-  //       )
-  //   )
-  //   return services
-  // }
+  services : Array<Service> = []
 
   addWorker = () => {
-    this.workerForm.value.services = this.pickServicesForm.value
+    this.workerForm.value.services = this.pickServicesForm.value;
     this.workersService.addWorker(this.workerForm.value)
       .then(() => this.uiService.openToast('success', 'Pracownik został dodany'),
             () => this.uiService.openToast('failure', 'Wystąpił błąd'))
       .then(() => this.router.navigate(['/admin/workers']), ref => ref)
-  }
+  };
 
-
-  constructor(private formBuilder : FormBuilder, private workersService : WorkersService, private servicesService : ServicesService, private router : Router, private uiService : UiService) { }
+  constructor(
+    private formBuilder : FormBuilder, 
+    private workersService : WorkersService, 
+    private servicesService : ServicesService, 
+    private router : Router, 
+    private uiService : UiService) { };
 
   ngOnInit() {
-    this.buildForm()
-    this.servicesService.getServices().subscribe(res =>  res.map(element => {
-      this.services.push(element)
-    }
-    ))
+    this.buildForm();
+    this.servicesService.getServices().subscribe(res =>  res.map((service : Service) => this.services.push(service)))
   }
 }

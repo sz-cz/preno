@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicesService } from 'src/app/core/services/services.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UiService } from 'src/app/core/services/ui.service';
+import { ServicesService, UiService } from './../../../core/services'
+import { Service } from 'src/app/shared/models';
 
 @Component({
   selector: 'pn-service-details',
@@ -9,20 +9,19 @@ import { UiService } from 'src/app/core/services/ui.service';
   styleUrls: ['./service-details.component.sass', './../../admin.component.sass']
 })
 export class ServiceDetailsComponent implements OnInit {
-
-  service
-  serviceKey
+  service : Service
+  serviceKey : string
 
   constructor(private servicesService : ServicesService, private route : ActivatedRoute, private router : Router, private uiService : UiService) { }
 
   deleteService = () => this.servicesService.deleteService(this.serviceKey)
     .then(() => this.uiService.openToast('success', 'Usługa została usunięta'),
           () => this.uiService.openToast('failure', 'Wystąpił błąd'))
-    .then(() => this.router.navigate(['/admin/services']))
+    .then(() => this.router.navigate(['/admin/services']));
 
   ngOnInit() {
-    this.serviceKey = this.route.snapshot.params['key']
-    this.servicesService.getService(this.route.snapshot.params['key']).subscribe(service => this.service = service)
+    this.serviceKey = this.route.snapshot.params['key'];
+    this.servicesService.getService(this.route.snapshot.params['key']).subscribe((service : Service) => this.service = service)
   }
 
 }

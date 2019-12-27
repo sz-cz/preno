@@ -5,7 +5,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class UiService {
-
   constructor(private toast : MatSnackBar) { }
 
   openToast = (type, message) => this.toast.open(message, '', {

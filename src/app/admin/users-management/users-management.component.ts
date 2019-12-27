@@ -1,22 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/core/services/users.service';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService, UsersService } from './../../core/services'
+import { Observable } from 'rxjs';
+import { User, UserRoles } from './../../shared/models/user.model';
 
 @Component({
   selector: 'pn-users-management',
   templateUrl: './users-management.component.html',
   styleUrls: ['./users-management.component.sass', './../admin.component.sass']
 })
+
 export class UsersManagementComponent implements OnInit {
+  users$ : Observable<User[]> = this.usersService.getUsers();
+  userRoles : UserRoles;
 
-  users$ = this.usersService.getUsers()
-  auth
-
-  constructor(private usersService : UsersService, private authService : AuthService) { }
+  constructor(
+    private usersService : UsersService,
+    private authService : AuthService) { };
 
   ngOnInit() {
     this.users$.subscribe()
-    this.auth = this.authService.getUserRoles()
+    this.userRoles = this.authService.getUserRoles()
   }
-
 }

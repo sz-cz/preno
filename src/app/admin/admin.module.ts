@@ -12,18 +12,9 @@ import { BookingDetailsComponent } from './bookings-management/booking-details/b
 import { ServiceFormComponent } from './services-management/service-form/service-form.component';
 import { WorkerFormComponent } from './workers-management/worker-form/worker-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {MatListModule} from '@angular/material/list';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UsersManagementComponent } from './users-management/users-management.component';
 import { UserDetailsComponent } from './users-management/user-details/user-details.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-
+import { MaterialModule } from './../shared/modules/material.module';
 
 @NgModule({
   declarations: [AdminComponent, BookingsManagementComponent, WorkersManagementComponent, ServicesManagementComponent, WorkerDetailsComponent, ServiceDetailsComponent, BookingDetailsComponent, ServiceFormComponent, WorkerFormComponent, UsersManagementComponent, UserDetailsComponent],
@@ -34,15 +25,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    MatListModule,
-    MatDividerModule,
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatSnackBarModule,
-    MatSidenavModule
+    MaterialModule
   ]
 })
 export class AdminModule { }

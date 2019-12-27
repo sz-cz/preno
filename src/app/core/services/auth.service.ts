@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { UserInfo } from 'firebase';
+import { UserRoles } from './../../shared/models/user.model';
 
 
 @Injectable({
@@ -10,18 +11,22 @@ import { UserInfo } from 'firebase';
 })
 export class AuthService {
   private user : UserInfo;
-  private userRoles = {
+  private userRoles : UserRoles = {
     isWorker: false,
-    isAdmin: false
-  }
+    isAdmin: false,
+    workerKey: ''
+  };
 
-  private addAdminRole = this.fireFunctions.httpsCallable('addAdminRole')
-  private addWorkerRole = this.fireFunctions.httpsCallable('addWorkerRole')
+  private addAdminRole = this.fireFunctions.httpsCallable('addAdminRole');
+  // private addWorkerRole = this.fireFunctions.httpsCallable('addWorkerRole')
 
-  constructor(private router : Router, private fireAuth : AngularFireAuth, private fireFunctions : AngularFireFunctions) {}
+  constructor(
+    private router : Router, 
+    private fireAuth : AngularFireAuth, 
+    private fireFunctions : AngularFireFunctions) {};
 
-  getUser = () => this.user
-  getUserRoles = () => this.userRoles
+  getUser = () => this.user;
+  getUserRoles = () => this.userRoles;
 
   login = (email, password) => this.fireAuth.auth.signInWithEmailAndPassword(email, password)
     .then(credentials => {

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { UiService } from 'src/app/core/services/ui.service';
+import { Worker } from './../../../shared/models';
 
 @Component({
   selector: 'pn-day-picker',
@@ -8,32 +9,31 @@ import { UiService } from 'src/app/core/services/ui.service';
 })
 export class DayPickerComponent implements OnInit, OnChanges {
 
-  @Output() pickedDay = new EventEmitter()
-  @Input() worker
-  chosenDay
+  @Output() pickedDay = new EventEmitter();
+  @Input() worker : Worker;
+  chosenDay : Date;
+  date = new Date();
+  today = this.date.getDate();
+  days = [];
 
-  constructor(private uiService : UiService) { }
+  constructor(private uiService : UiService) { };
 
   ngOnInit() {
-    this.addPastDays()
+    this.addPastDays();
     this.setDays(31)
-  }
+  };
 
   ngOnChanges(changes : SimpleChanges) {
     if(!changes['worker'].isFirstChange()) {
-      this.chosenDay = null
-      this.days = []
+      this.chosenDay = null;
+      this.days = [];
       this.setDays(31)
     }
-  }
+  };
 
-  date = new Date()
-  today = this.date.getDate()
-  days = []
-
-setDays = number => {
+setDays = (number : number) => {
   for (let i = 0; i < number; i++) {
-    let dat = new Date(this.date.getFullYear(), this.date.getMonth(), this.today + 1 + i)
+    let dat = new Date(this.date.getFullYear(), this.date.getMonth(), this.today + 1 + i);
     this.days.push(this.markDaysOff(dat))
   }
 }

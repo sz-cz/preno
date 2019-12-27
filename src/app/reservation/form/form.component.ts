@@ -8,7 +8,6 @@ import { CustomerForm } from 'src/app/shared/models/booking.model';
   styleUrls: ['./form.component.sass']
 })
 export class FormComponent implements OnInit {
-
   @Output() completedForm = new EventEmitter()
 
   form : CustomerForm  = {
@@ -18,11 +17,11 @@ export class FormComponent implements OnInit {
   }
 
 
-  constructor(private usersService : UsersService) { }
+  constructor(private usersService : UsersService) { };
 
   onSubmit = () => {
     this.completedForm.emit(this.form)
-  }
+  };
 
   ngOnInit() {
     this.usersService.getCurrentUser().subscribe((user : CustomerForm) => this.form = user)

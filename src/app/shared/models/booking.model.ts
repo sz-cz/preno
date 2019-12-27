@@ -1,9 +1,9 @@
 export interface Booking {
-    key: string;
+    key?: string;
     worker: string;
     service: string;
-    date: Date;
-    endDate: Date;
+    date: (Date | firebase.firestore.Timestamp | any);
+    endDate: (Date | firebase.firestore.Timestamp | any);
     customer: CustomerForm
 }
 

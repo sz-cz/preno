@@ -8,12 +8,11 @@ import { Router } from '@angular/router';
 })
 export class Page404Component implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router : Router) { };
 
   ngOnInit() {
     setTimeout(() => {
       this.router.navigate([''])
     }, 5000)
   }
-
 }

@@ -1,20 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicesService } from '../core/services/services.service';
-import { WorkersService } from '../core/services/workers.service';
-import { BookingsService } from '../core/services/bookings.service';
+import { BookingsService, ServicesService, UiService, WorkersService } from './../core/services'
 import { Observable } from 'rxjs';
-import { Booking, CustomerForm } from '../shared/models/booking.model';
-import { Service } from '../shared/models/service.model';
-import { Worker } from '../shared/models/worker.model';
-import { UiService } from '../core/services/ui.service';
+import { Service, Worker, Booking, CustomerForm } from './../shared/models';
 
 @Component({
   selector: 'pn-reservation',
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.sass']
 })
-export class ReservationComponent implements OnInit {
 
+export class ReservationComponent implements OnInit {
   booking : Booking = {
     key: '',
     service: null,
@@ -26,50 +21,50 @@ export class ReservationComponent implements OnInit {
       email: '',
       phone: ''
     }
-  }
+  };
 
-  services$ : Observable<Service> = this.servicesService.getServices()
-  workers$ : Observable<Worker> = null
-  worker : Worker
-  service : Service
+  services$ : Observable<Service[]> = this.servicesService.getServices();
+  workers$ : Observable<Worker[]> = null;
+  worker : Worker;
+  service : Service;
 
   onPickedService = (service : Service) => {
     this.booking.service = service.key;
     this.service = service;
-    this.booking.date = null
-    this.booking.endDate = null
-    this.booking.worker = null
-    this.workers$ = this.workersService.findWorkers(service.key);
-  }
+    this.booking.date = null;
+    this.booking.endDate = null;
+    this.booking.worker = null;
+    this.workers$ = this.workersService.findWorkers(service.key)
+  };
 
   onPickedWorker = (worker : Worker) => {
     this.booking.worker = worker.key;
     this.worker = worker;
-    this.booking.date = null
+    this.booking.date = null;
     this.booking.endDate = null
-  }
+  };
   
   onPickedDate = (date : Date) => {
-    this.booking.date = date
+    this.booking.date = date;
     this.booking.endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes() + this.service.duration)
   }
 
-  onCompletedForm = (form : CustomerForm) => {
-    this.booking.customer = form
-  }
+  onCompletedForm = (form : CustomerForm) => this.booking.customer = form
 
   sendBooking = () => {
     this.bookingService.addBooking(this.booking)
       .then(() => this.uiService.openToast('success', 'Rezerwacja została dodana'),
-            () => this.uiService.openToast('failure', 'Wystąpił błąd'));
-    this.booking.service = null;
-    this.booking.worker = null;
-    this.booking.date = null;
-    this.booking.endDate = null;
-    this.booking.customer.name = '';
-    this.booking.customer.email = '';
-    this.booking.customer.phone = '';
-  }
+            () => this.uiService.openToast('failure', 'Wystąpił błąd'))
+      .then(() => {
+        this.booking.service = null;
+        this.booking.worker = null;
+        this.booking.date = null;
+        this.booking.endDate = null;
+        this.booking.customer.name = '';
+        this.booking.customer.email = '';
+        this.booking.customer.phone = '';
+      })
+  };
 
   constructor(private servicesService : ServicesService,
     private workersService : WorkersService, 
@@ -79,5 +74,4 @@ export class ReservationComponent implements OnInit {
   ngOnInit() {
     this.services$.subscribe()
   }
-
 }

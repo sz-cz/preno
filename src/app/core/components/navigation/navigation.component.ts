@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services';
+import { UserRoles } from './../../../shared/models/user.model';
 
 @Component({
   selector: 'pn-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.sass']
 })
-export class NavigationComponent implements OnInit {
-  userRoles
+export class NavigationComponent {
+  userRoles : UserRoles;
 
   constructor(private router : Router, private authService : AuthService) { }
 
@@ -18,8 +19,4 @@ export class NavigationComponent implements OnInit {
   }
 
   logOut = () => this.authService.logout()
-
-  ngOnInit() {
-  }
-
 }

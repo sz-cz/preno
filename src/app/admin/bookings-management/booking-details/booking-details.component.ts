@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BookingsService } from 'src/app/core/services/bookings.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicesService } from 'src/app/core/services/services.service';
-import { WorkersService } from 'src/app/core/services/workers.service';
-import { UiService } from 'src/app/core/services/ui.service';
+import { BookingsService, ServicesService, UiService, WorkersService } from '../../../core/services'
+import { Booking, Service, Worker } from 'src/app/shared/models';
 
 @Component({
   selector: 'pn-booking-details',
@@ -12,10 +10,10 @@ import { UiService } from 'src/app/core/services/ui.service';
 })
 export class BookingDetailsComponent implements OnInit {
 
-  booking
-  bookingKey
-  service
-  worker
+  booking : Booking;
+  bookingKey : string;
+  service : Service;
+  worker : Worker;
 
   constructor(
     private bookingsService : BookingsService,
@@ -23,7 +21,7 @@ export class BookingDetailsComponent implements OnInit {
     private workersService : WorkersService,
     private route : ActivatedRoute,
     private router : Router,
-    private uiService : UiService) { }
+    private uiService : UiService) { };
 
   deleteBooking = () => {
     this.bookingsService.deleteBooking(this.bookingKey)
@@ -31,21 +29,16 @@ export class BookingDetailsComponent implements OnInit {
           () => this.uiService.openToast('failure', 'Wystąpił błąd'))
     .then(
           () => this.router.navigate(['/admin/bookings']))
-  }
+  };
 
   ngOnInit() {
-    this.bookingKey = this.route.snapshot.params['key']
-    // this.booking = this.route.snapshot.data['booking']
-    this.bookingsService.getBooking(this.route.snapshot.params['key']).subscribe(booking => {
+    this.bookingKey = this.route.snapshot.params['key'];
+    this.bookingsService.getBooking(this.route.snapshot.params['key']).subscribe((booking : Booking) => {
       this.booking = booking;
       if (booking) {
-        this.servicesService.getService(this.booking.service).subscribe(service => this.service = service)
-        this.workersService.getWorker(this.booking.worker).subscribe(worker => this.worker = worker)
+        this.servicesService.getService(this.booking.service).subscribe((service : Service) => this.service = service);
+        this.workersService.getWorker(this.booking.worker).subscribe((worker : Worker) => this.worker = worker)
       }
-
     })
-
-
   }
-
 }

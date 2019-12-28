@@ -1,0 +1,11 @@
+<div class="modal">
+    <h1 mat-dialog-title>Na pewno chcesz wyjść?</h1>
+    <div mat-dialog-content>
+      <p>Proces rezerwacji nie został zakończony. Aby go dokończyć, musisz nacisnąć przycisk "zarezerwuj" umieszczony pod podsumowaniem. Czy na pewno chcesz anulować rozpoczętą rezerwację?</p>
+    </div>
+    <div class="modal__buttons" mat-dialog-actions>
+      <button mat-button color="warn" (click)="onDecision(true)">Przerwij</button>
+      <button mat-button (click)="onDecision(false)" cdkFocusInitial>Wróć</button>
+    </div>
+</div>
+

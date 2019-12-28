@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingsService, ServicesService, UiService, WorkersService } from './../core/services'
 import { Observable } from 'rxjs';
-import { Service, Worker, Booking, CustomerForm } from './../shared/models';
+import { Service, Worker, Booking, CustomerForm, CanComponentDeactivate } from './../shared/models';
 
 @Component({
   selector: 'pn-reservation',
@@ -9,7 +9,7 @@ import { Service, Worker, Booking, CustomerForm } from './../shared/models';
   styleUrls: ['./reservation.component.sass']
 })
 
-export class ReservationComponent implements OnInit {
+export class ReservationComponent implements OnInit, CanComponentDeactivate {
   booking : Booking = {
     key: '',
     service: null,
@@ -74,4 +74,8 @@ export class ReservationComponent implements OnInit {
   ngOnInit() {
     this.services$.subscribe()
   }
+
+  canDeactivate = () => 
+    !this.booking.customer.email && !this.booking.customer.name && !this.booking.customer.phone ? true
+    : this.uiService.openModal()
 }

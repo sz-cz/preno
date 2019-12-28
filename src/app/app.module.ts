@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { UserModule } from './user/user.module';
 import { AuthService, BookingsService, ServicesService, UiService, UsersService, WorkersService } from './core/services'
+import { ReservationCanDeactivateGuard } from './core/guards/reservation-can-deactivate.guard';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { AuthService, BookingsService, ServicesService, UiService, UsersService,
     AngularFireFunctionsModule,
     UserModule
   ],
-  providers: [AngularFirestore, BookingsService, ServicesService, WorkersService, AuthService, UiService, UsersService],
+  providers: [AngularFirestore, BookingsService, ServicesService, WorkersService, AuthService, UiService, UsersService, ReservationCanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

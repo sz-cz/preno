@@ -5,12 +5,13 @@ import { ReservationComponent } from './reservation/reservation.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegistrationComponent } from './core/components/registration/registration.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ReservationCanDeactivateGuard } from './core/guards/reservation-can-deactivate.guard';
 import { UserComponent } from './user/user.component';
 import { Page404Component } from './core/components/page404/page404.component';
 
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', component: ReservationComponent},
+  {path: '', pathMatch: 'full', component: ReservationComponent, canDeactivate: [ReservationCanDeactivateGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegistrationComponent},
   {path: 'admin',

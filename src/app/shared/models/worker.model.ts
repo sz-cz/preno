@@ -1,5 +1,5 @@
 export interface Worker {
-    key: string;
+    key?: string;
     description: string;
     image: string;
     name: string;

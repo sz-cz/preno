@@ -17,6 +17,7 @@
         </mat-card-content>
         <mat-card-actions>
             <button (click)="deleteService()" mat-raised-button color="warn">usuń usługę</button>
+            <button [routerLink]="['/admin/services', serviceKey, 'edit']" mat-raised-button color="primary">edytuj usługę</button>
         </mat-card-actions>
         </mat-card>
 </div>

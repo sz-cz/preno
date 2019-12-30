@@ -23,6 +23,11 @@ export class ServicesService {
 
   addService = (service : Service) : Promise<any> => this.db.collection(`services`).add(service);
 
+  updateService = (key, service : Service) : Promise<any> => {
+    // const { key, ...data } = service;
+    return this.db.collection('services').doc(key).update(service)
+  }
+
   deleteService = (key : string) : Promise<any> => this.db.collection('services').doc(key).delete();
 
   assignKey = (service) : Service => ({...service.payload.doc.data(), key: service.payload.doc.id})

@@ -1,7 +1,7 @@
 <div class="container">
     <mat-card class="admin-card">
         <mat-card-header>
-            <mat-card-title>Dodaj nową usługę</mat-card-title>
+            <mat-card-title>{{!isEdition ? "Dodaj nową usługę" : "Edytuj usługę" }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <form [formGroup]="serviceForm" (submit)="addService()">
@@ -26,11 +26,12 @@
                 <h3 class="form-header">Którzy pracownicy będą świadczyć tę usługę?</h3>
                 <form #pickWorkersForm="ngForm">
                     <div *ngFor="let worker of workers$ | async" for="worker.key" class="form-field">
-                        <mat-checkbox ngModel name={{worker?.key}}>{{worker.name}}</mat-checkbox>
+                        <mat-checkbox [ngModel] name={{worker?.key}} [checked]="worker?.services[serviceKey]">{{worker.name}}</mat-checkbox>
                     </div>
                 </form>
                 <div class="form-field">
                     <button mat-raised-button color="primary" type="submit" [disabled]="serviceForm.invalid">Wyślij</button>
+                    <!-- <button *ngIf="isEdition"mat-raised-button color="primary" (click)="editService()" [disabled]="serviceForm.invalid">Edytuj</button> -->
                 </div>
             </form>
         </mat-card-content>

@@ -15,9 +15,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UsersManagementComponent } from './users-management/users-management.component';
 import { UserDetailsComponent } from './users-management/user-details/user-details.component';
 import { MaterialModule } from './../shared/modules/material.module';
+import { ServiceEditionComponent } from './services-management/service-edition/service-edition.component';
 
 @NgModule({
-  declarations: [AdminComponent, BookingsManagementComponent, WorkersManagementComponent, ServicesManagementComponent, WorkerDetailsComponent, ServiceDetailsComponent, BookingDetailsComponent, ServiceFormComponent, WorkerFormComponent, UsersManagementComponent, UserDetailsComponent],
+  declarations: [AdminComponent, BookingsManagementComponent, WorkersManagementComponent, ServicesManagementComponent, WorkerDetailsComponent, ServiceDetailsComponent, BookingDetailsComponent, ServiceFormComponent, WorkerFormComponent, UsersManagementComponent, UserDetailsComponent, ServiceEditionComponent],
   exports: [AdminComponent],
   imports: [
     CommonModule,

@@ -10,6 +10,7 @@ import { ServiceFormComponent } from './services-management/service-form/service
 import { WorkerFormComponent } from './workers-management/worker-form/worker-form.component';
 import { UsersManagementComponent } from './users-management/users-management.component';
 import { UserDetailsComponent } from './users-management/user-details/user-details.component';
+import { ServiceEditionComponent } from './services-management/service-edition/service-edition.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'workers/:key', component: WorkerDetailsComponent},
   {path: 'services', component: ServicesManagementComponent},
   {path: 'services/add', component: ServiceFormComponent},
-  {path: 'services/:key', component: ServiceDetailsComponent}
+  {path: 'services/:key', component: ServiceDetailsComponent},
+  {path: 'services/:key/edit', component: ServiceEditionComponent}
 ];
 
 @NgModule({

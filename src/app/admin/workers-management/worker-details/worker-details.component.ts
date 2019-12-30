@@ -28,9 +28,9 @@ export class WorkerDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.workerKey = this.route.snapshot.params['key'];
-    this.workersService.getWorker(this.route.snapshot.params['key']).subscribe((worker : Worker) => {
+    this.workersService.getWorker(this.workerKey).subscribe((worker : Worker) => {
       this.worker = worker;
-      this.bookings$ = this.bookingsService.findBookings(this.worker.key)
+      this.bookings$ = this.bookingsService.findBookings(this.workerKey)
     })
   }
 }

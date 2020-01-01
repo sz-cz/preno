@@ -16,9 +16,12 @@ import { UsersManagementComponent } from './users-management/users-management.co
 import { UserDetailsComponent } from './users-management/user-details/user-details.component';
 import { MaterialModule } from './../shared/modules/material.module';
 import { ServiceEditionComponent } from './services-management/service-edition/service-edition.component';
+import { WorkerEditionComponent } from './workers-management/worker-edition/worker-edition.component';
+import { WorkerAdditionComponent } from './workers-management/worker-addition/worker-addition.component';
+import { ServiceAdditionComponent } from './services-management/service-addition/service-addition.component';
 
 @NgModule({
-  declarations: [AdminComponent, BookingsManagementComponent, WorkersManagementComponent, ServicesManagementComponent, WorkerDetailsComponent, ServiceDetailsComponent, BookingDetailsComponent, ServiceFormComponent, WorkerFormComponent, UsersManagementComponent, UserDetailsComponent, ServiceEditionComponent],
+  declarations: [AdminComponent, BookingsManagementComponent, WorkersManagementComponent, ServicesManagementComponent, WorkerDetailsComponent, ServiceDetailsComponent, BookingDetailsComponent, ServiceFormComponent, WorkerFormComponent, UsersManagementComponent, UserDetailsComponent, ServiceEditionComponent, WorkerEditionComponent, WorkerAdditionComponent, ServiceAdditionComponent],
   exports: [AdminComponent],
   imports: [
     CommonModule,

@@ -23,7 +23,7 @@ export class ReservationComponent implements OnInit, CanComponentDeactivate {
     }
   };
 
-  services$ : Observable<Service[]> = this.servicesService.getServices();
+  services$ : Observable<Service[]> = this.servicesService.getAvailableServices();
   workers$ : Observable<Worker[]> = null;
   worker : Worker;
   service : Service;

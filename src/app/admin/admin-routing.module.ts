@@ -6,11 +6,12 @@ import { ServicesManagementComponent } from './services-management/services-mana
 import { WorkerDetailsComponent } from './workers-management/worker-details/worker-details.component';
 import { ServiceDetailsComponent } from './services-management/service-details/service-details.component';
 import { BookingDetailsComponent } from './bookings-management/booking-details/booking-details.component';
-import { ServiceFormComponent } from './services-management/service-form/service-form.component';
-import { WorkerFormComponent } from './workers-management/worker-form/worker-form.component';
 import { UsersManagementComponent } from './users-management/users-management.component';
 import { UserDetailsComponent } from './users-management/user-details/user-details.component';
 import { ServiceEditionComponent } from './services-management/service-edition/service-edition.component';
+import { WorkerEditionComponent } from './workers-management/worker-edition/worker-edition.component';
+import { WorkerAdditionComponent } from './workers-management/worker-addition/worker-addition.component';
+import { ServiceAdditionComponent } from './services-management/service-addition/service-addition.component';
 
 
 const routes: Routes = [
@@ -20,10 +21,11 @@ const routes: Routes = [
   {path: 'bookings', component: BookingsManagementComponent},
   {path: 'bookings/:key', component: BookingDetailsComponent},
   {path: 'workers', component: WorkersManagementComponent},
-  {path: 'workers/add', component: WorkerFormComponent},
+  {path: 'workers/add', component: WorkerAdditionComponent},
   {path: 'workers/:key', component: WorkerDetailsComponent},
+  {path: 'workers/:key/edit', component: WorkerEditionComponent},
   {path: 'services', component: ServicesManagementComponent},
-  {path: 'services/add', component: ServiceFormComponent},
+  {path: 'services/add', component: ServiceAdditionComponent},
   {path: 'services/:key', component: ServiceDetailsComponent},
   {path: 'services/:key/edit', component: ServiceEditionComponent}
 ];

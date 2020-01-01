@@ -27,6 +27,8 @@ export class WorkersService {
 
   addWorker = (worker : Worker) : Promise<any> => this.db.collection(`workers`).add(worker);
 
+  updateWorker = (key : string, worker : Worker) : Promise<any> => this.db.collection('workers').doc(key).update(worker)
+
   deleteWorker = (key : string) : Promise<any> => this.db.collection('workers').doc(key).delete();
 
   setService = (key : string, service : string) : Promise<any> => this.db.collection('workers').doc(key).update({

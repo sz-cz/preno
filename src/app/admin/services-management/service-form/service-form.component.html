@@ -1,39 +1,26 @@
-<div class="container">
-    <mat-card class="admin-card">
-        <mat-card-header>
-            <mat-card-title>{{!isEdition ? "Dodaj nową usługę" : "Edytuj usługę" }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <form [formGroup]="serviceForm" (submit)="addService()">
-                <mat-form-field class="form-field">
-                    <input matInput formControlName="name" type="text" placeholder="nazwa">
-                    <mat-error *ngIf="serviceForm.get('name').hasError('required')">Pole wymagane</mat-error>
-                    <mat-error *ngIf="serviceForm.get('name').hasError('minlength')">Nazwa musi mieć przynajmniej 3 znaki</mat-error>
-                </mat-form-field>
-                <mat-form-field class="form-field">
-                    <input matInput formControlName="duration" type="number" placeholder="ile trwa (w minutach)">
-                    <mat-error *ngIf="serviceForm.get('duration').hasError('required')">Pole wymagane</mat-error>
-                    <mat-error *ngIf="serviceForm.get('duration').hasError('min')">Usługa musi trwać min. 5 minut</mat-error>
-                    <mat-error *ngIf="serviceForm.get('duration').hasError('max')">Usługa może trwać max. 120 minut</mat-error>
-                </mat-form-field>
-                <mat-form-field class="form-field">
-                    <input matInput formControlName="image" type="string" placeholder="ścieżka do zdjęcia">
-                    <mat-hint>Jeśli nie podasz, wyświetli się inicjał</mat-hint>
-                </mat-form-field>
-                <div class="form-field">
-                    <mat-checkbox formControlName="available" name="available" checked> Czy usługa ma być włączona?</mat-checkbox>
-                </div>
-                <h3 class="form-header">Którzy pracownicy będą świadczyć tę usługę?</h3>
-                <form #pickWorkersForm="ngForm">
-                    <div *ngFor="let worker of workers$ | async" for="worker.key" class="form-field">
-                        <mat-checkbox [ngModel] name={{worker?.key}} [checked]="worker?.services[serviceKey]">{{worker.name}}</mat-checkbox>
-                    </div>
-                </form>
-                <div class="form-field">
-                    <button mat-raised-button color="primary" type="submit" [disabled]="serviceForm.invalid">Wyślij</button>
-                    <!-- <button *ngIf="isEdition"mat-raised-button color="primary" (click)="editService()" [disabled]="serviceForm.invalid">Edytuj</button> -->
-                </div>
-            </form>
-        </mat-card-content>
-    </mat-card>
-</div>
+<form [formGroup]="serviceForm" (submit)="addService()">
+    <mat-form-field class="form-field">
+        <input matInput formControlName="name" type="text" placeholder="nazwa">
+        <mat-error *ngIf="serviceForm.get('name').hasError('required')">Pole wymagane</mat-error>
+        <mat-error *ngIf="serviceForm.get('name').hasError('minlength')">Nazwa musi mieć przynajmniej 3 znaki</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+        <input matInput formControlName="duration" type="number" placeholder="ile trwa (w minutach)">
+        <mat-error *ngIf="serviceForm.get('duration').hasError('required')">Pole wymagane</mat-error>
+        <mat-error *ngIf="serviceForm.get('duration').hasError('min')">Usługa musi trwać min. 5 minut</mat-error>
+        <mat-error *ngIf="serviceForm.get('duration').hasError('max')">Usługa może trwać max. 120 minut</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+        <input matInput formControlName="image" type="string" placeholder="ścieżka do zdjęcia">
+        <mat-hint>Jeśli nie podasz, wyświetli się inicjał</mat-hint>
+    </mat-form-field>
+    <div class="form-field">
+        <mat-checkbox formControlName="available" name="available" checked> Czy usługa ma być włączona?</mat-checkbox>
+    </div>
+    <h3 class="form-header">Którzy pracownicy będą świadczyć tę usługę?</h3>
+    <form #pickWorkersForm="ngForm">
+        <div *ngFor="let worker of workers$ | async" for="worker.key" class="form-field">
+            <mat-checkbox [ngModel] name={{worker?.key}} [checked]="worker?.services[serviceKey]">{{worker.name}}</mat-checkbox>
+        </div>
+    </form>
+</form>

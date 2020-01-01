@@ -17,6 +17,7 @@
             </mat-card-content>
             <mat-card-actions>
                 <button (click)="deleteWorker()" mat-raised-button color="warn">usuń pracownika</button>
+                <button [routerLink]="['/admin/workers', workerKey, 'edit']" mat-raised-button color="primary">edytuj pracownika</button>
             </mat-card-actions>
             </mat-card>
             <mat-card class="admin-card">

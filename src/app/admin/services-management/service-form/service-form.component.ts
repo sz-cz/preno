@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ServicesService, UiService, WorkersService } from './../../../core/services'
+import { WorkersService } from './../../../core/services'
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Worker, Service } from './../../../shared/models';
 
 @Component({
@@ -27,25 +25,6 @@ export class ServiceFormComponent implements OnInit {
     image: '',
   });
 
-  addService = () : Promise<any> =>
-    !this.isEdition ?
-      this.servicesService.addService(this.serviceForm.value)
-        .then(data => this.bindWorkers(data.id))
-        .then(() => this.uiService.openToast('success', 'Usługa została dodana'),
-              () => this.uiService.openToast('failure', 'Wystąpił błąd'))
-        .then(() => this.router.navigate(['/admin/services']))
-      : this.servicesService.updateService(this.serviceKey, this.serviceForm.value)
-      .then(() => this.bindWorkers(this.serviceKey))
-      .then(() => this.uiService.openToast('success', 'Usługa została zmieniona'),
-            (error) => this.uiService.openToast('failure', 'Wystąpił błąd:' + error))
-      .then(() => this.router.navigate(['/admin/services']));
-
-  // editService = () : Promise<any> => this.servicesService.updateService(this.serviceForm.value)
-  //   .then(data => this.bindWorkers(data.id))
-  //   .then(() => this.uiService.openToast('success', 'Usługa została zmieniona'),
-  //         () => this.uiService.openToast('failure', 'Wystąpił błąd'))
-  //   .then(() => this.router.navigate(['/admin/services']));
-
   setService = (service : Service, serviceKey : string) => {
     this.isEdition = true;
     this.serviceKey = serviceKey;
@@ -59,10 +38,7 @@ export class ServiceFormComponent implements OnInit {
 
   constructor(
     private formBuilder : FormBuilder, 
-    private servicesService : ServicesService, 
-    private router : Router, 
-    private workersService : WorkersService, 
-    private uiService : UiService) { };
+    private workersService : WorkersService) { };
 
   ngOnInit() {
     this.workers$.subscribe();

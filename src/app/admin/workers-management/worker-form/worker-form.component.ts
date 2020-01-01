@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServicesService, UiService, WorkersService } from './../../../core/services';
-import { Service } from './../../../shared/models';
+import { Service, Worker } from './../../../shared/models';
 
 @Component({
   selector: 'pn-worker-form',
@@ -12,6 +12,8 @@ import { Service } from './../../../shared/models';
 export class WorkerFormComponent implements OnInit {
   @ViewChild('pickServicesForm', {static: false}) pickServicesForm : NgForm;
   workerForm : FormGroup;
+  isEdition : boolean = false;
+  worker : Worker;
 
   buildForm = () : FormGroup => {
     this.workerForm = this.formBuilder.group({
@@ -23,16 +25,13 @@ export class WorkerFormComponent implements OnInit {
   })
   return this.workerForm
 }
+  setForm = (worker : Worker) => {
+    this.isEdition = true;
+    this.worker = worker;
+    this.workerForm.patchValue(worker);
+  }
 
   services : Array<Service> = []
-
-  addWorker = () => {
-    this.workerForm.value.services = this.pickServicesForm.value;
-    this.workersService.addWorker(this.workerForm.value)
-      .then(() => this.uiService.openToast('success', 'Pracownik został dodany'),
-            () => this.uiService.openToast('failure', 'Wystąpił błąd'))
-      .then(() => this.router.navigate(['/admin/workers']), ref => ref)
-  };
 
   constructor(
     private formBuilder : FormBuilder, 

@@ -13,7 +13,10 @@ export class ServicesService {
   constructor(private db: AngularFirestore) { }
 
   getServices = () : Observable<Service[]> => this.db.collection('services').snapshotChanges()
-    .pipe(map((snapshot : any) => snapshot.map(service => this.assignKey(service))));
+        .pipe(map((snapshot : any) => snapshot.map(service => this.assignKey(service))));
+
+  getAvailableServices = () : Observable<Service[]> => this.db.collection('services', ref => ref.where(`available`, "==", true).orderBy('name')).snapshotChanges()
+        .pipe(map((snapshot : any) => snapshot.map(service => this.assignKey(service))));;
 
   getServicesKeys = () : Observable<string[]> => this.db.collection('services').snapshotChanges()
     .pipe(map((snapshot : any) => snapshot.map(service => service.payload.doc.id)));
@@ -23,10 +26,7 @@ export class ServicesService {
 
   addService = (service : Service) : Promise<any> => this.db.collection(`services`).add(service);
 
-  updateService = (key, service : Service) : Promise<any> => {
-    // const { key, ...data } = service;
-    return this.db.collection('services').doc(key).update(service)
-  }
+  updateService = (key, service : Service) : Promise<any> => this.db.collection('services').doc(key).update(service)
 
   deleteService = (key : string) : Promise<any> => this.db.collection('services').doc(key).delete();
 

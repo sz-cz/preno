@@ -18,7 +18,8 @@ export class AuthService {
   };
 
   private addAdminRole = this.fireFunctions.httpsCallable('addAdminRole');
-  // private addWorkerRole = this.fireFunctions.httpsCallable('addWorkerRole')
+  private addWorkerRole = this.fireFunctions.httpsCallable('addWorkerRole')
+  private deleteUser = this.fireFunctions.httpsCallable('deleteUser')
 
   constructor(
     private router : Router, 
@@ -50,8 +51,8 @@ export class AuthService {
 
   makeAdmin = email => this.addAdminRole({email: email}).toPromise().then(result => console.log(result))
 
-  // makeWorker = email => this.addWorkerRole({email: email})
+  makeWorker = (email, workerID) => this.addWorkerRole({email: email, workerID: workerID}).toPromise().then(result => console.log(result))
 
-  // delete = key => this.fireAuth.auth
+  delete = (email) => this.deleteUser({email: email}).toPromise().then(result => console.log(result))
 
 }

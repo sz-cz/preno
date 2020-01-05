@@ -9,7 +9,7 @@ exports.addWorkerRole = functions.https.onCall((data, context) => {
             worker: true,
             workerID: data.workerID
         }))
-        .then(() => ({message: `${data.email} has been made a worker`}))
+        .then(() => ({message: `${data.email} has been made a worker: ${data.workerID}`}))
         .catch(error => error)
 });
 

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { WorkerFormComponent } from './../worker-form/worker-form.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { WorkersService, UiService } from 'src/app/core/services';
+import { WorkersService, UiService, AuthService } from 'src/app/core/services';
 import { tap } from 'rxjs/operators';
-import { Worker } from './../../../shared/models'
+import { Worker, UserRoles } from './../../../shared/models'
 
 @Component({
   selector: 'pn-worker-edition',
@@ -11,17 +11,20 @@ import { Worker } from './../../../shared/models'
   styleUrls: ['./worker-edition.component.sass', './../../admin.component.sass']
 })
 export class WorkerEditionComponent implements OnInit {
-  @ViewChild('workerForm', {static: false}) workerForm : WorkerFormComponent
-  workerKey : string
+  @ViewChild('workerForm', {static: false}) workerForm : WorkerFormComponent;
+  workerKey : string;
+  userRoles : UserRoles;
 
   constructor(
     private workersService : WorkersService,
+    private authService : AuthService,
     private uiService : UiService,
     private router : Router,
     private route : ActivatedRoute) { }
 
   ngOnInit() {
-    this.workerKey = this.route.snapshot.params['key']
+    this.workerKey = this.route.snapshot.params['key'];
+    this.userRoles = this.authService.getUserRoles()
     this.workersService.getWorker(this.workerKey).pipe(tap((worker : Worker) => this.workerForm.setForm(worker))).subscribe()
   }
 

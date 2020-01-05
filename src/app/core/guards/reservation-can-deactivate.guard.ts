@@ -9,7 +9,8 @@ import { CanComponentDeactivate } from 'src/app/shared/models';
 
 export class ReservationCanDeactivateGuard implements CanDeactivate<CanComponentDeactivate> {
   canDeactivate(component : CanComponentDeactivate): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return component.canDeactivate()
+    if (component)
+      return component.canDeactivate()
   }
   
 }

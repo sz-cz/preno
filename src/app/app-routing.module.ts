@@ -15,13 +15,13 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegistrationComponent},
   {path: 'admin',
-  loadChildren: './admin/admin.module#AdminModule',
-  canActivate: [AuthGuard],
-  component: AdminComponent},
+    loadChildren: './admin/admin.module#AdminModule',
+    canActivate: [AuthGuard],
+    component: AdminComponent},
   {path: 'user',
-  loadChildren: './user/user.module#UserModule',
-  canActivate: [AuthGuard],
-  component: UserComponent},
+    // loadChildren: './user/user.module#UserModule',
+    canActivate: [AuthGuard],
+    component: UserComponent},
   {path: '**', component: Page404Component, data: { is404: true }}
 ];
 

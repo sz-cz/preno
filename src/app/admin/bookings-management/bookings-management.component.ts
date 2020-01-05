@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BookingsService, ServicesService, WorkersService } from './../../core/services'
+import { BookingsService, ServicesService, WorkersService, AuthService } from './../../core/services'
 import { Observable } from 'rxjs';
-import { Booking, Worker } from 'src/app/shared/models';
+import { Booking, Worker, UserRoles } from 'src/app/shared/models';
 
 @Component({
   selector: 'pn-bookings-management',
@@ -10,14 +10,26 @@ import { Booking, Worker } from 'src/app/shared/models';
 })
 
 export class BookingsManagementComponent implements OnInit {
+  private userRoles : UserRoles
   bookings$ : Observable<Booking[]> = this.bookingsService.getUpcomingBookings();
-  pastBookings$ : Observable<Booking[]> = this.bookingsService.getPastBookings();
+  pastBookings$ : Observable<Booking[]> | null
   workers$ : Observable<Worker[]> = this.workersService.getWorkers();
 
-  constructor(private bookingsService : BookingsService, private servicesService : ServicesService, private workersService : WorkersService) { }
+  constructor(
+    private bookingsService : BookingsService,
+    private servicesService : ServicesService,
+    private workersService : WorkersService,
+    private authService : AuthService) { }
 
   ngOnInit() {
-      this.bookings$.subscribe();
+    this.userRoles = this.authService.getUserRoles();
+    if (this.userRoles.isAdmin) {
+      this.bookings$ = this.bookingsService.getUpcomingBookings();
       this.pastBookings$ = this.bookingsService.getPastBookings()
+    }
+    if (this.userRoles.isWorker) {
+      this.bookings$ = this.bookingsService.findBookings(this.userRoles.workerKey);
+      // this.pastBookings$ = this.bookingsService.getPastBookings()
+    }
   }
 }

@@ -14,8 +14,8 @@ export class LoginComponent {
     private uiService : UiService) { }
 
   logIn = loginForm => this.authService.login(loginForm.value.login, loginForm.value.password)
-    .then(admin => {
-      if (admin == true) this.router.navigate(['/admin'])
+    .then(roles => {
+      if (roles.admin == true || roles.worker) this.router.navigate(['/admin'])
       else this.router.navigate([''])
     })
     .catch(error => this.uiService.openToast('failure', error))

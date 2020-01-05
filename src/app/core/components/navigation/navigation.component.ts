@@ -15,8 +15,9 @@ export class NavigationComponent {
 
   choosePanel = () => {
     this.userRoles = this.authService.getUserRoles();
-    this.userRoles.isAdmin == true ? this.router.navigate(['/admin']) : this.router.navigate(['/user'])
+    this.userRoles.isAdmin || this.userRoles.isWorker ? this.router.navigate(['/admin']) : this.router.navigate(['/user'])
   }
 
   logOut = () => this.authService.logout()
+    .then(() => this.router.navigate(['']))
 }

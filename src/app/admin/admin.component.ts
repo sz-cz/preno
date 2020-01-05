@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../core/services';
+import { UserRoles } from '../shared/models';
 
 @Component({
   selector: 'pn-admin',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.sass']
 })
 export class AdminComponent implements OnInit {
+  userRoles : UserRoles;
 
-  constructor() { }
+  constructor(private authService : AuthService) { }
 
   ngOnInit() {
+    this.userRoles = this.authService.getUserRoles()
   }
-
 }

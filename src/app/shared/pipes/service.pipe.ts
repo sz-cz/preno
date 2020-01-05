@@ -11,7 +11,7 @@ export class ServicePipe implements PipeTransform {
   constructor(private servicesService : ServicesService) {}
 
   transform(value: string, ...args: any[]): any {
-    return this.servicesService.getService(value).pipe(map((service : Service) => service.name))
+    return this.servicesService.getService(value).pipe(map((service : Service) => service ? service.name : null))
   }
 
 }

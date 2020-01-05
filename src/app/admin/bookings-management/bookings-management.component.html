@@ -17,7 +17,7 @@
             </mat-list>
         </mat-card-content>
         </mat-card>
-        <mat-card class="admin-card">
+        <mat-card *ngIf="userRoles.isAdmin" class="admin-card">
             <mat-card-header>
                 <mat-card-title>Lista minionych rezerwacji</mat-card-title>
                 <mat-card-subtitle>Naciśnij, aby zobaczyć szczegóły</mat-card-subtitle>

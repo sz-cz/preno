@@ -21,7 +21,28 @@
         </mat-card-content>
         <mat-card-actions>
             <button (click)="deleteUser()" mat-raised-button color="warn">usuń</button>
-            <button (click)="makeAdmin()" mat-raised-button color="warn">nadaj admina</button>
         </mat-card-actions>
+    </mat-card>
+    <mat-card class="admin-card">
+        <mat-card-header>
+            <mat-card-title>Edytuj uprawnienia</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="sub-content">
+                <h3 class="sub-content__title">Nadaj uprawnienia administratora</h3>
+                <p class="sub-content__text">Użytkownik będzie mógł tworzyć, edytować i usuwać pracowników oraz usług.</p>
+                <button class="sub-content__button" (click)="makeAdmin()" mat-raised-button color="primary">nadaj admina</button>
+            </div>
+            <div class="sub-content">
+                <h3 class="sub-content__title">Powiąż z profilem pracownika</h3>
+                <p class="sub-content__text">Jeśli powiążesz użytkownika z profilem pracownika, umożliwisz użytkownikowi zarządzanie tym profilem oraz przeglądanie złożonych rezerwacji.</p>
+                <mat-form-field class="sub-content__select">
+                    <mat-select placeholder="pracownik" #workerSelection>
+                        <mat-option *ngFor="let worker of workers$ | async" [value]="worker.key">{{worker.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button class="sub-content__button" (click)="makeWorker(workerSelection.value)" mat-raised-button color="primary">uczyń pracownikiem</button>
+            </div>
+        </mat-card-content>
     </mat-card>
 </div>

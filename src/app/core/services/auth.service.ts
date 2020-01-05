@@ -22,7 +22,6 @@ export class AuthService {
   private deleteUser = this.fireFunctions.httpsCallable('deleteUser')
 
   constructor(
-    private router : Router, 
     private fireAuth : AngularFireAuth, 
     private fireFunctions : AngularFireFunctions) {};
 
@@ -35,7 +34,9 @@ export class AuthService {
       return credentials.user.getIdTokenResult().then(result => {
         result.claims.worker == true ? this.userRoles.isWorker = result.claims.worker : this.userRoles.isWorker = false;
         result.claims.admin == true ? this.userRoles.isAdmin = result.claims.admin : this.userRoles.isAdmin = false;
-        return result.claims.admin
+        // result.claims.workerID ? this.userRoles.workerKey = result.claims.workerID : this.userRoles.workerKey = '';
+        this.userRoles.workerKey = result.claims.workerID;
+        return result.claims
       })
     })
 
@@ -45,7 +46,6 @@ export class AuthService {
       this.userRoles.isAdmin = undefined;
       this.userRoles.isWorker = undefined;
     })
-    .then(() => this.router.navigate(['']))
 
   register = (email, password) => this.fireAuth.auth.createUserWithEmailAndPassword(email, password)
 

@@ -14,7 +14,8 @@
     <mat-sidenav class="admin-sidebar" mode="side" opened>
         <mat-nav-list *ngIf="userRoles.isAdmin">
             <h4 class="navigation__subheader" mat-list-item>Rezerwacje</h4>
-            <a mat-list-item [routerLink]="['bookings']">Lista rezerwacji</a>
+            <a mat-list-item [routerLink]="['bookings/current']">Nadchodzące</a>
+            <a mat-list-item [routerLink]="['bookings/archive']">Archiwum</a>
             <mat-divider></mat-divider>
             <h4 class="navigation__subheader" mat-list-item>Pracownicy</h4>
             <a mat-list-item [routerLink]="['workers']">Lista pracowników</a>

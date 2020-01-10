@@ -28,7 +28,7 @@ export class BookingDetailsComponent implements OnInit {
     .then(() => this.uiService.openToast('success', 'Rezerwacja została usunięta'),
           () => this.uiService.openToast('failure', 'Wystąpił błąd'))
     .then(
-          () => this.router.navigate(['/admin/bookings']))
+          () => this.router.navigate(['/admin/bookings/current']))
   };
 
   ngOnInit() {

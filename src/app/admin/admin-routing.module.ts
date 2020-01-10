@@ -15,10 +15,11 @@ import { ServiceAdditionComponent } from './services-management/service-addition
 
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'bookings'},
+  {path: '', pathMatch: 'full', redirectTo: 'bookings/current'},
   {path: 'users', component: UsersManagementComponent},
   {path: 'users/:key', component: UserDetailsComponent},
-  {path: 'bookings', component: BookingsManagementComponent},
+  {path: 'bookings/current', component: BookingsManagementComponent, data: {type: 'current'}},
+  {path: 'bookings/archive', component: BookingsManagementComponent, data: {type: 'archive'}},
   {path: 'bookings/:key', component: BookingDetailsComponent},
   {path: 'workers', component: WorkersManagementComponent},
   {path: 'workers/add', component: WorkerAdditionComponent},

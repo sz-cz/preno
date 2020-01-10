@@ -33,7 +33,6 @@ export class WorkerEditionComponent implements OnInit {
     this.workersService.updateWorker(this.workerKey, this.workerForm.workerForm.value)
       .then(() => this.uiService.openToast('success', 'Dane pracownika zostały zmienione'),
             (error) => this.uiService.openToast('failure', 'Wystąpił błąd: ' + error))
-      .then(() => this.router.navigate(['/admin/workers']), ref => ref)
+      .then(() => this.router.navigate(['/admin']), ref => ref)
   };
-
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="workerForm" (submit)="addWorker()">
+<form [formGroup]="workerForm">
     <mat-form-field class="form-field">
         <input matInput formControlName="name" type="text" placeholder="imię pracownika">
         <mat-error *ngIf="workerForm.get('name').hasError('required')">Pole wymagane</mat-error>

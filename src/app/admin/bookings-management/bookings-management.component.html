@@ -1,8 +1,11 @@
 <div class="container">
     <mat-toolbar class="tools" color="primary">
-          <span>
+          <div>
             <input matInput class="tools__search" placeholder="wyszukaj klienta" (input)="search($event)">
-          </span>
+          </div>
+          <!-- <mat-chip-list class="tools__services" aria-label="Wybór usługi">
+            <mat-chip *ngFor="let service of services$ | async" [selectable]="true" (click)="selectService(service.key)" class="tools__chips">{{service.name}}</mat-chip>
+          </mat-chip-list> -->
       </mat-toolbar>
     <mat-card class="admin-card">
             <mat-card-header>

@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { ReservationModule } from './reservation/reservation.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
@@ -33,7 +33,8 @@ import { ReservationCanDeactivateGuard } from './core/guards/reservation-can-dea
     BrowserAnimationsModule,
     AngularFireAuthModule,
     AngularFireFunctionsModule,
-    UserModule
+    UserModule,
+    AngularFirestoreModule
   ],
   providers: [AngularFirestore, BookingsService, ServicesService, WorkersService, AuthService, UiService, UsersService, ReservationCanDeactivateGuard],
   bootstrap: [AppComponent]
